@@ -12,7 +12,7 @@ import { TokenService } from '../../services/token.service';
 @Injectable()
 export class HeadersInterceptor implements HttpInterceptor {
 
-  constructor(private tokenService: TokenService, private masterKey: Boolean) {}
+  constructor(private tokenService: TokenService, private masterKey: boolean) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const token = this.tokenService.getToken();

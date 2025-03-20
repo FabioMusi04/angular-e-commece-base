@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
 
+export interface IToken {
+  sub: string;
+  exp: number;
+  iat: number;
+  authorities: string[];
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -21,11 +27,12 @@ export class TokenService {
     localStorage.removeItem(this.TOKEN_KEY);
   }
 
-  decodeToken(token: string): any {
+  decodeToken(token: string): IToken | null {
     try {
       const payload = token.split('.')[1];
       return JSON.parse(atob(payload));
     } catch (e) {
+      console.log(e);
       return null;
     }
   }
