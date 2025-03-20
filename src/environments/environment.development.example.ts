@@ -2,5 +2,6 @@
 
 export const environment = {
     apiUrl: 'your-api-url',
-    production: false
+    production: false,
+    masterKey: 'your-master_key',
 };
