@@ -12,13 +12,13 @@ export class LoggingInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(
-    request: HttpRequest<any>,
+    request: HttpRequest<unknown>,
     next: HttpHandler
-  ): Observable<HttpEvent<any>> {
+  ): Observable<HttpEvent<unknown>> {
     console.log('Outgoing HTTP request', request);
 
     return next.handle(request).pipe(
-      tap((event: HttpEvent<any>) => {
+      tap((event: HttpEvent<unknown>) => {
         console.log('Incoming HTTP response', event);
       })
     );
