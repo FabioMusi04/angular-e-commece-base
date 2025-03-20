@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
@@ -12,7 +12,7 @@ import { TokenService } from '../../services/token.service';
 @Injectable()
 export class HeadersInterceptor implements HttpInterceptor {
 
-  constructor(private tokenService: TokenService, private masterKey: boolean) {}
+  constructor(private tokenService: TokenService, @Inject('MASTER_KEY') private masterKey: boolean) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const token = this.tokenService.getToken();
@@ -24,20 +24,23 @@ export class HeadersInterceptor implements HttpInterceptor {
       modifiedRequest = request.clone({
         setHeaders: {
           Authorization: `Bearer ${masterkey}`
-        }
+        },
+        url: `${environment.apiUrl}${request.url}`
       });
     } else if (masterkey) {
       modifiedRequest = request.clone({
         setHeaders: {
           Authorization: `Bearer ${masterkey}`
-        }
+        },
+        url: `${environment.apiUrl}${request.url}`
       });
     }
     else {
       modifiedRequest = request.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`
-        }
+        },
+        url: `${environment.apiUrl}${request.url}`
       });
     }
 
