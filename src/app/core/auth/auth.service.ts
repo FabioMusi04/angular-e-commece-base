@@ -21,13 +21,34 @@ export class AuthService {
     this.checkAuthStatus();
   }
 
+  register(user: { name:string, email: string; password: string }): Observable<object> {
+    return this.http.post<object>(`${this.API_URL}/auth/register`, user).pipe(
+      tap({
+        next: (response) => {
+          if (response) {
+            console.log('Registration successful:', response);
+          }
+        },
+        error: (error) => {
+          if (error.status === 400) {
+            console.error('Bad request:', error.error);
+          }
+        }
+      }),
+            map((response) => response)
+    );
+  }
+
   login(credentials: { email: string; password: string }): Observable<object> {
-    return this.http.post<{ token: string; user: object }>(`${this.API_URL}/auth`, credentials).pipe(
+    const headers = {
+      Authorization: 'Basic ' + btoa(`${credentials.email}:${credentials.password}`)
+    };
+    return this.http.get<{ token: string; user: object }>(`${this.API_URL}/auth`, { headers }).pipe(
       tap((response) => {
-      if (response.token) {
-        localStorage.setItem('access_token', response.token);
-        this.isAuthenticatedSubject.next(true);
-      }
+        if (response.token) {
+          localStorage.setItem('access_token', response.token);
+          this.isAuthenticatedSubject.next(true);
+        }
       }),
       map((response) => response.user)
     );
