@@ -36,7 +36,8 @@ export class HeadersInterceptor implements HttpInterceptor {
       modifiedRequest = request.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`
-        }
+        },
+        url: `${environment.apiUrl}${request.url}`
       });
     }
 
