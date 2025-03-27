@@ -2,29 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, forkJoin } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
+import { ICategory, IProduct, IProductRes } from '../../../features/products/products-list/products.model';
 
-export interface ICategory {
-  id: string;
-  description: string;
-}
 
-export interface IProductBase {
-  id: number;
-  name: string;
-  price: number;
-  description: string;
-  imageUrl: string;
-}
-
-export interface IProductRes extends IProductBase {
-  
-  category: string;
-  
-}
-
-export interface IProduct extends IProductBase {
-  category: ICategory;
-}
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +16,7 @@ export class ProductsService {
   getProducts(page: number, limit: number): Observable<IProduct[]> {
     return this.http.get<IProductRes[]>(`/products?count=true&page=${page}&limit=${limit}`).pipe(
       switchMap(products => {
-        const categoryRequests = products.map(product => 
+        const categoryRequests = products.map(product =>
           this.getCategoryById(product.category).pipe(
             map(category => ({
               ...product,
