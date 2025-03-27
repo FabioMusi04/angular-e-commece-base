@@ -7,15 +7,15 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
-import { TokenService } from '../../services/token.service';
+import { AuthService } from '../../auth/auth.service';
 
 @Injectable()
 export class HeadersInterceptor implements HttpInterceptor {
 
-  constructor(private tokenService: TokenService) {}
+  constructor(private authService: AuthService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const token = this.tokenService.getToken();
+    const token = this.authService.getToken();
 
     let modifiedRequest;
 
