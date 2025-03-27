@@ -24,10 +24,6 @@ export class NavbarComponent {
     this.isAuthenticated = false;
   }
 
-  login(): void {
-    console.log('User logged in');
-    this.isAuthenticated = true;
-  }
 
   goToPage(page: string): void {
     console.log('Navigating to', page);

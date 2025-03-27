@@ -16,10 +16,14 @@ export class HeadersInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const token = this.authService.getToken();
-
+    
     let modifiedRequest;
+    
+    if (request.url.endsWith('/auth')) {
+      return next.handle(request);
+    }
 
-    if (!token) {
+    if (!token ) {
       modifiedRequest = request.clone({
         setHeaders: {
           Authorization: `Bearer ${environment.masterKey}`

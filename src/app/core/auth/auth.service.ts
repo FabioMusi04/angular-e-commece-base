@@ -43,7 +43,7 @@ export class AuthService {
     const headers = {
       Authorization: 'Basic ' + btoa(`${credentials.email}:${credentials.password}`)
     };
-    return this.http.get<{ token: string; user: object }>(`${this.API_URL}/auth`, { headers }).pipe(
+    return this.http.post<{ token: string; user: object }>(`${this.API_URL}/auth`, {}, { headers }).pipe(
       tap((response) => {
         if (response.token) {
           localStorage.setItem('access_token', response.token);
