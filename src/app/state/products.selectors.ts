@@ -1,4 +1,19 @@
-import { createFeatureSelector } from "@ngrx/store";
-import { IProduct } from "../features/products/products-list/products.model";
+import { createSelector, createFeatureSelector } from "@ngrx/store";
+import { IProductState } from "./products.reducer";
 
-export const selectProducts = createFeatureSelector<ReadonlyArray<IProduct>>('products');
+export const selectProductState = createFeatureSelector<IProductState>('products');
+
+export const selectProducts = createSelector(
+  selectProductState,
+  (state: IProductState) => state.products
+);
+
+export const selectProductLoading = createSelector(
+  selectProductState,
+  (state: IProductState) => state.loading
+);
+
+export const selectProductError = createSelector(
+  selectProductState,
+  (state: IProductState) => state.error
+);
