@@ -21,7 +21,7 @@ export const productsReducer = createReducer(
       ...state,
       loading: true,
     })),
-    on(ProductsAction.loadProductsSucess, (state, { products}) => ({
+    on(ProductsAction.loadProductsSuccess, (state, { products}) => ({
       ...state,
       loading: false,
       products

@@ -12,9 +12,7 @@ export interface IProductBase {
 }
 
 export interface IProductRes extends IProductBase {
-
     category: string;
-
 }
 
 export interface IProduct extends IProductBase {
