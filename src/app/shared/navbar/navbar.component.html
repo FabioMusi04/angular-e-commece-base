@@ -1,0 +1,15 @@
+<mat-toolbar color="primary">
+    <span>My E-Commerce</span>
+    <span class="spacer"></span>
+    <button mat-button *ngIf="!isAuthenticated" (click)="goToPage('/login')">Login</button>
+    <button mat-button *ngIf="!isAuthenticated" (click)="goToPage('/signup')">Register</button>
+    <button mat-button *ngIf="isAuthenticated" (click)="logout()">Logout</button>
+    <button mat-button *ngIf="isAuthenticated" (click)="goToPage('/orders')">Orders</button>
+    <button mat-button *ngIf="isAuthenticated" (click)="goToPage('/products')">Products</button>
+</mat-toolbar>
+
+<style>
+    .spacer {
+        flex: 1 1 auto;
+    }
+</style>

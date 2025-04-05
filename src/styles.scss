@@ -1,7 +1,7 @@
 @use '@angular/material' as mat;
 @use 'styles/palettes.scss';
 
-$my-primary: mat.define-palette(palettes.$m2-primary, 500, 300, 800, 100);
+$my-primary: mat.define-palette(palettes.$m2-primary);
 $my-accent: mat.define-palette(palettes.$m2-accent, A200, A100, A400);
 
 // The "warn" palette is optional and defaults to red if not specified.

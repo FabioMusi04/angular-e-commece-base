@@ -1,0 +1,26 @@
+<mat-card class="login-card">
+    <mat-card-header>
+        <mat-card-title>Login</mat-card-title>
+        <mat-card-subtitle>
+            You don't have an account? <a routerLink="/signup">Sign up</a>
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" formControlName="email" placeholder="Email">
+                <mat-icon matSuffix>email</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" formControlName="password" placeholder="Password">
+                <mat-icon matSuffix>lock</mat-icon>
+            </mat-form-field>
+            <div class="button-container">
+                <button mat-raised-button color="primary" type="submit">Submit</button>
+                <button mat-button color="warn" type="reset" (click)="loginForm.reset()">Reset</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>
