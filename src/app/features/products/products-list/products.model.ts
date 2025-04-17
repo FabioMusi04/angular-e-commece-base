@@ -1,20 +1,23 @@
 export interface ICategory {
     id: string;
+    name: string;
     description: string;
+    createdBy: string;
+    createdAt: string;
+    updatedAt: string;
+    __v: number;
 }
 
-export interface IProductBase {
+export interface IProduct {
     id: number;
     name: string;
     price: number;
     description: string;
     imageUrl: string;
-}
-
-export interface IProductRes extends IProductBase {
-    category: string;
-}
-
-export interface IProduct extends IProductBase {
     category: ICategory;
+    stock: number;
+    createdBy: string;
+    createdAt: string;
+    updatedAt: string;
+    __v: number;
 }

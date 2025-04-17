@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, ViewChild, OnInit  } from '@angular/core';
-import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import { AfterViewInit, Component, ViewChild, OnInit } from '@angular/core';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { loadProducts } from '../../../state/products.actions';
 import { IProduct } from './products.model';
@@ -16,22 +16,20 @@ import { Observable } from 'rxjs';
   styleUrl: './products.component.scss'
 })
 export class ProductsComponent implements AfterViewInit, OnInit {
-  displayedColumns: string[] = ['name', 'price'];
+  displayedColumns: string[] = ['imageUrl', 'name', 'categoryName', 'stock', 'price'];
   dataSource = new MatTableDataSource<unknown>();
   products$: Observable<IProduct[]>;
 
   loading$ = this.store.select(selectProductLoading);
   error$ = this.store.select(selectProductError);
 
-  constructor(private store: Store){
+  constructor(private store: Store) {
     this.products$ = this.store.select(selectProducts);
   }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngOnInit() {
-    this.store.dispatch(loadProducts({ page: 1, limit: 10 }));
-
     this.products$.subscribe((products) => {
       this.dataSource.data = products;
     });
@@ -40,11 +38,12 @@ export class ProductsComponent implements AfterViewInit, OnInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
 
+    this.store.dispatch(loadProducts({ page: this.paginator.pageIndex + 1, limit: this.paginator.pageSize }));
+
     this.paginator.page.subscribe(() => {
+      console.log(this.paginator.pageIndex, this.paginator.pageSize);
       this.store.dispatch(loadProducts({ page: this.paginator.pageIndex + 1, limit: this.paginator.pageSize }));
     })
 
   }
-
-
 }
