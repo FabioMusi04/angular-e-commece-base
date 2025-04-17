@@ -1,70 +1,91 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
-:root {
-  --primary-color: #C3001E;
-  --bg-light: #f4f4f6;
-  --card-bg: #ffffff;
-  --text-color: #2e2e2e;
-  --error-color: #B00020;
-  --input-border: #e0e0e0;
-  --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+// Mixins
+@mixin button-styles {
+  background-color: #d1d0d0;
+  color: #2e2e2e;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.3px;
+  text-transform: none;
+  transition: all 0.2s ease;
+  width: 100%;
 }
 
-body {
-  font-family: 'Inter', sans-serif;
-}
-
+// Styles
 .wrap-login {
+  max-height: 75vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--bg-light);
-  padding: 20px;
+  padding: 40px 20px;
+  background-color: #ffffff !important;
+  flex-direction: column;
+
+  .signup-title {
+    text-align: center;
+    margin-bottom: 24px;
+
+    h1 {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #2e2e2e !important;
+    }
+
+    .login-link {
+      font-size: 14px;
+      color: #555;
+    }
+  }
 }
 
 .container {
-  background: var(--card-bg);
-  box-shadow: var(--shadow);
-  border-radius: 16px;
   max-width: 400px;
   width: 100%;
   padding: 40px 30px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
+
+  @media (max-width: 480px) {
+    padding: 30px 20px;
+  }
 }
 
 .login-box {
   width: 100%;
-}
 
-mat-form-field {
-  width: 100%;
-  margin-bottom: 24px;
-}
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
 
-mat-form-field.appearance-outline .mat-mdc-form-field-outline {
-  border-color: var(--input-border);
-  border-radius: 8px;
-}
+    &.appearance-outline .mat-mdc-form-field-outline {
+      border-color: #ffffff;
+      border-radius: 12px;
+    }
 
-.mat-mdc-text-field-wrapper {
-  border-radius: 8px !important;
-}
+    .mat-mdc-text-field-wrapper {
+      border-radius: 12px !important;
+    }
 
-.form-field {
-  font-size: 15px;
-  color: var(--text-color);
-}
+    .form-field {
+      font-size: 15px;
+      color: #2e2e2e;
+    }
 
-.login-box mat-label,
-.mat-mdc-form-field-error {
-  color: var(--error-color) !important;
-}
+    mat-label,
+    .mat-mdc-form-field-error {
+      color: #d32f2f !important;
+    }
 
-.mat-mdc-form-field-error-wrapper {
-  font-size: 13px;
-  height: auto;
+    .mat-mdc-form-field-error-wrapper {
+      font-size: 13px;
+      margin-top: 4px;
+    }
+  }
 }
 
 mat-card-actions {
@@ -74,23 +95,11 @@ mat-card-actions {
 }
 
 button[mat-raised-button] {
-  background-color: var(--primary-color);
-  color: var(--text-color);
-  border-radius: 8px;
-  padding: 12px 24px;
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 0.5px;
-  text-transform: none;
-  transition: all 0.3s ease;
-}
+  @include button-styles;
 
-button[mat-raised-button]:hover {
-  background-color: #e4e4e4;
-}
-
-@media (max-width: 480px) {
-  .container {
-    padding: 30px 20px;
+  &:hover {
+    background-color: #acf191;
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(212, 212, 212, 0.15);
   }
 }
