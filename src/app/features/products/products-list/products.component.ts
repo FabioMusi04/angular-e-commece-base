@@ -41,7 +41,6 @@ export class ProductsComponent implements AfterViewInit, OnInit {
     this.store.dispatch(loadProducts({ page: this.paginator.pageIndex + 1, limit: this.paginator.pageSize }));
 
     this.paginator.page.subscribe(() => {
-      console.log(this.paginator.pageIndex, this.paginator.pageSize);
       this.store.dispatch(loadProducts({ page: this.paginator.pageIndex + 1, limit: this.paginator.pageSize }));
     })
 
