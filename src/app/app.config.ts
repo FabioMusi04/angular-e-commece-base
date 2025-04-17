@@ -1,6 +1,6 @@
 import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -12,19 +12,24 @@ import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { provideEffects } from '@ngrx/effects';
 
 import { productsReducer } from './state/products.reducer';
+import { ProductsEffects } from './state/products.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideAnimationsAsync(),
-    provideHttpClient(withInterceptorsFromDi()),
+    provideHttpClient(withInterceptorsFromDi(), withFetch()),
     { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HeadersInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     provideStore({
       products: productsReducer
     }),
-    provideEffects(),
+    provideEffects(
+      [
+        ProductsEffects,
+      ]
+    ),
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     JwtHelperService
   ]
