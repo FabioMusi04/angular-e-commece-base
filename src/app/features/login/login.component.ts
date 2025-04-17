@@ -1,53 +1,81 @@
+import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
-import { AuthService } from '../../core/auth/auth.service';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatCard, MatCardActions, MatCardContent, MatCardHeader } from '@angular/material/card';
+import { MatError, MatFormField, MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { JwtHelperService } from '@auth0/angular-jwt';
+import { MatDialog } from '@angular/material/dialog';
+import { AuthService } from '../../core/auth/auth.service';
+import { Router } from '@angular/router';
+import { AlertComponent } from '../../shared/alert/alert.component';
 
 @Component({
   selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
   standalone: true,
   imports: [
+    CommonModule,
+    MatCardActions,
+    MatError,
+    MatLabel,
+    MatFormField,
+    MatCardHeader,
+    MatCardContent,
+    MatCard,
     ReactiveFormsModule,
-    RouterModule,    
-    ReactiveFormsModule,
-    MatCardModule,
     MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatIconModule,],
-  providers: [JwtHelperService],
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+    MatInputModule
+  ]
 })
-
 export class LoginComponent {
   authService = inject(AuthService);
   router = inject(Router);
+  dialog = inject(MatDialog);
 
-  protected loginForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required])
-  });
+  loginForm: FormGroup;
 
-  onSubmit() {
+  constructor(private formBuilder: FormBuilder) {
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
+  }
+
+  onSubmit(): void {
     if (this.loginForm.valid) {
-      console.log(this.loginForm.value);
+      const formData = this.loginForm.value;
+
       const credentials = {
-        email: this.loginForm.value.email as string,
-        password: this.loginForm.value.password as string
+        email: formData.email,
+        password: formData.password
       };
-      this.authService.login(credentials).subscribe((data: object) => {
-        if (this.authService.isLoggedIn()) {
-          this.router.navigate(['/']);
+
+      this.authService.login(credentials).subscribe({
+        next: () => {
+          if (this.authService.isLoggedIn()) {
+            this.showAlert('Success', 'Login successful!', 'success');
+            this.router.navigate(['/']);
+          }
+        },
+        error: () => {
+          this.showAlert('Error', 'Invalid email or password.', 'error');
         }
-        console.log(data);
       });
+    } else {
+      this.showAlert('Error', 'Please fill in all required fields correctly.', 'error');
     }
+  }
+
+  showAlert(title: string, message: string, status: 'warn' | 'error' | 'info' | 'success'): void {
+    this.dialog.open(AlertComponent, {
+      data: {
+        title,
+        message,
+        status,
+        buttons: 'ok',
+        autoClose: true
+      }
+    });
   }
 }

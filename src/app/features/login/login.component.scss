@@ -1,48 +1,96 @@
-* {
-    box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --primary-color: #C3001E;
+  --bg-light: #f4f4f6;
+  --card-bg: #ffffff;
+  --text-color: #2e2e2e;
+  --error-color: #B00020;
+  --input-border: #e0e0e0;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.wrap-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg-light);
+  padding: 20px;
+}
+
+.container {
+  background: var(--card-bg);
+  box-shadow: var(--shadow);
+  border-radius: 16px;
+  max-width: 400px;
+  width: 100%;
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-box {
+  width: 100%;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+mat-form-field.appearance-outline .mat-mdc-form-field-outline {
+  border-color: var(--input-border);
+  border-radius: 8px;
+}
+
+.mat-mdc-text-field-wrapper {
+  border-radius: 8px !important;
+}
+
+.form-field {
+  font-size: 15px;
+  color: var(--text-color);
+}
+
+.login-box mat-label,
+.mat-mdc-form-field-error {
+  color: var(--error-color) !important;
+}
+
+.mat-mdc-form-field-error-wrapper {
+  font-size: 13px;
+  height: auto;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+button[mat-raised-button] {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  text-transform: none;
+  transition: all 0.3s ease;
+}
+
+button[mat-raised-button]:hover {
+  background-color: #e4e4e4;
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 30px 20px;
   }
-  
-  :host {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(253, 101, 133, 1);
-  }
-  
-  .login-card {
-    display: flex;
-    flex-direction: column;
-    margin: 10px 10px;
-    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
-    background-color: #ffffff;
-    padding: 10px;
-    border-radius: 10px;
-    width: 40%;
-  }
-  
-  .login-card input {
-    margin: 5px 0;
-    width: 100%;
-    background-color: #e2e2e2;
-    border: none;
-    outline: none;
-    padding: 12px 20px;
-    border-radius: 4px;
-  }
-  
-  .login-card button {
-    background-color: #4796ff;
-    color: #ffffff;
-    font-size: 16px;
-    outline: none;
-    border-radius: 5px;
-    border: none;
-    padding: 8px 15px;
-    width: 100%;
-  }
-  
-  .card-title h1 {
-    font-size: 26px;
-    font-weight: bold;
-  }
+}

@@ -1,0 +1,38 @@
+.alert-container {
+  z-index: 1000;
+  width: 280px;
+  min-height: 50px; 
+  padding: 8px 12px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  font-size: 14px;
+}
+
+.alert-title {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.alert-message {
+  font-size: 12px;
+  margin: 2px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.alert-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 5px;
+  margin-top: 4px;
+}
+
+.alert-warn { background-color: #ffcc00; color: #333; }
+.alert-error { background-color: #ff4d4d; color: white; }
+.alert-info { background-color: #2196f3; color: white; }
+.alert-success { background-color: #4caf50; color: white; }
