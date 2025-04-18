@@ -6,8 +6,9 @@ import { MatError, MatFormField, MatFormFieldModule, MatLabel } from '@angular/m
 import { MatInputModule } from '@angular/material/input';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../../core/auth/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AlertComponent } from '../../shared/alert/alert.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +27,9 @@ import { AlertComponent } from '../../shared/alert/alert.component';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatCardTitle
+    MatCardTitle,
+    MatButtonModule,
+    RouterModule
   ]
 })
 export class LoginComponent {

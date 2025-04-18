@@ -3,6 +3,10 @@ import { canMatchAuthGuard } from './core/guards/guard.guard';
 
 export const routes: Routes = [
     {
+        path: '',
+        loadChildren: () => import('./features/home/home-routing.module').then(m => m.HomeRoutingModule)
+    },
+    {
         path: 'orders',
         canMatch: [canMatchAuthGuard],
         loadChildren: () => import('./features/orders/orders.module').then(m => m.OrdersRoutingModule)

@@ -2,14 +2,30 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../core/auth/auth.service';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
+import { MatError, MatFormField, MatFormFieldModule, MatLabel } from '@angular/material/form-field';
+import { CommonModule } from '@angular/common';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterModule, MatCardModule, MatFormFieldModule, MatCheckboxModule],
+  imports: [
+    CommonModule, ReactiveFormsModule, RouterModule,
+    MatCardActions,
+    MatError,
+    MatLabel,
+    MatFormField,
+    MatCardHeader,
+    MatCardContent,
+    MatCard,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardTitle,
+    MatButtonModule
+  ],
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
