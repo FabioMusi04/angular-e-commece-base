@@ -12,6 +12,16 @@ export const routes: Routes = [
         loadChildren: () => import('./features/orders/orders.module').then(m => m.OrdersRoutingModule)
     },
     {
+        path: 'checkout',
+        canMatch: [canMatchAuthGuard],
+        loadChildren: () => import('./features/checkout/checkout.module').then(m => m.CheckoutModule)
+    },
+    {
+        path: 'cart',
+        canMatch: [canMatchAuthGuard],
+        loadChildren: () => import('./features/cart/cart.module').then(m => m.CartModule)
+    },
+    {
         path: 'login',
         loadChildren: () => import('./features/login/login-routing.module').then(m => m.LoginRoutingModule)
     },

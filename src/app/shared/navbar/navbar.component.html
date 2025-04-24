@@ -14,6 +14,7 @@
     <button mat-button *ngIf="!this.authService.isLoggedIn()" (click)="goToPage('/login')">Login</button>
     <button mat-button *ngIf="!this.authService.isLoggedIn()" (click)="goToPage('/signup')">Register</button>
     <button mat-button *ngIf="this.authService.isLoggedIn()" (click)="logout()">Logout</button>
+    <button mat-button *ngIf="this.authService.isLoggedIn()" (click)="goToPage('/cart')">Shopping Cart</button>
     <button mat-button *ngIf="this.authService.isLoggedIn()" (click)="goToPage('/orders')">Orders</button>
     <button mat-button *ngIf="this.authService.isLoggedIn()" (click)="goToPage('/products')">Products</button>
 </mat-toolbar>
