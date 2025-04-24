@@ -7,6 +7,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -25,6 +26,8 @@ import { MatInputModule } from '@angular/material/input';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent {
+  constructor(private router: Router) {}
+
   cartItems = [
     { name: 'Item 1', price: 100, quantity: 1 },
     { name: 'Item 2', price: 200, quantity: 2 },
@@ -54,6 +57,6 @@ export class CartComponent {
   }
 
   checkout(): void {
-    alert('Checkout functionality not implemented yet!');
+    this.router.navigate(['/checkout']);
   }
 }

@@ -1,0 +1,32 @@
+.billing-container {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+
+  mat-card {
+    width: 100%;
+    max-width: 700px;
+    padding: 1rem;
+  }
+
+  .billing-form {
+    display: flex;
+    flex-direction: column;
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+
+      .flex-item {
+        flex: 1 1 0;
+        min-width: 200px;
+      }
+    }
+
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}
