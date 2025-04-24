@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { TokenStore } from '../../state/token.service'; // <-- Add this
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -16,7 +17,8 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private jwtHelper: JwtHelperService
+    private jwtHelper: JwtHelperService,
+    private tokenStore: TokenStore // <-- Add this
   ) {
     this.checkAuthStatus();
   }
@@ -57,7 +59,7 @@ export class AuthService {
       .pipe(
         tap((response) => {
           if (response.token) {
-            localStorage.setItem('access_token', response.token);
+            this.tokenStore.setToken(response.token);
             this.isAuthenticatedSubject.next(true);
           }
         }),
@@ -66,13 +68,13 @@ export class AuthService {
   }
 
   logout(): void {
-    localStorage.removeItem('access_token');
+    this.tokenStore.clearToken(); // <-- Updated line
     this.isAuthenticatedSubject.next(false);
     this.router.navigate(['/login']);
   }
 
   getToken(): string | null {
-    return localStorage.getItem('access_token');
+    return this.tokenStore.token(); // <-- Reactive read
   }
 
   isLoggedIn(): boolean {
