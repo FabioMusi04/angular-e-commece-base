@@ -6,24 +6,27 @@ import { loadProducts } from '../../../state/products.actions';
 import { IProduct } from './products.model';
 import { selectProductError, selectProductLoading, selectProducts } from '../../../state/products.selectors';
 import { Observable } from 'rxjs';
+import { MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-products',
+  selector: 'app-products-list',
   standalone: true,
-  imports: [MatTableModule, MatPaginatorModule],
-  templateUrl: './products.component.html',
-  styleUrl: './products.component.scss'
+  imports: [MatTableModule, MatPaginatorModule, MatButton, MatIcon],
+  templateUrl: './products-list.component.html',
+  styleUrl: './products-list.component.scss'
 })
-export class ProductsComponent implements AfterViewInit, OnInit {
+export class ProductsListComponent implements AfterViewInit, OnInit {
   displayedColumns: string[] = ['imageUrl', 'name', 'categoryName', 'stock', 'price'];
-  dataSource = new MatTableDataSource<unknown>();
+  dataSource = new MatTableDataSource<IProduct>();
   products$: Observable<IProduct[]>;
 
   loading$ = this.store.select(selectProductLoading);
   error$ = this.store.select(selectProductError);
 
-  constructor(private store: Store) {
+  constructor(private store: Store, private router: Router) {
     this.products$ = this.store.select(selectProducts);
   }
 
@@ -45,4 +48,9 @@ export class ProductsComponent implements AfterViewInit, OnInit {
     })
 
   }
+
+  onButtonCLick() {
+    this.router.navigate(['/products/create']);
+  }
+
 }

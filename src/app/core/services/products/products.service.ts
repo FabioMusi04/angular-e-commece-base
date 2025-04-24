@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IProduct } from '../../../features/products/products-list/products.model';
-import { environment } from '../../../../environments/environment';
 
 
 
@@ -10,7 +9,6 @@ import { environment } from '../../../../environments/environment';
   providedIn: 'root'
 })
 export class ProductsService {
-
 
   constructor(private http: HttpClient) { }
 

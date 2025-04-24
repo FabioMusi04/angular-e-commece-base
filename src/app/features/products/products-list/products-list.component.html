@@ -1,6 +1,12 @@
 <div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource">
 
+
+  <button mat-raised-button (click)="onButtonCLick()">
+    <mat-icon>add</mat-icon>
+    Add Product
+  </button>
+
+  <table mat-table [dataSource]="dataSource">
     <!-- ImageUrl Column -->
     <ng-container matColumnDef="imageUrl">
       <th mat-header-cell *matHeaderCellDef> </th>
