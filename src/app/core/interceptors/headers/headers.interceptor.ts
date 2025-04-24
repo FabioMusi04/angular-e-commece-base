@@ -29,14 +29,7 @@ export class HeadersInterceptor implements HttpInterceptor {
           Authorization: `Bearer ${environment.masterKey}`
         }
       });
-    } else if (environment.masterKey) {
-      modifiedRequest = request.clone({
-        setHeaders: {
-          Authorization: `Bearer ${environment.masterKey}`
-        }
-      });
-    }
-    else {
+    } else {
       modifiedRequest = request.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`
