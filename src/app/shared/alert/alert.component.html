@@ -1,0 +1,8 @@
+<div class="alert-container" [ngClass]="colorClass">
+  <h2 class="alert-title">{{ data.title }}</h2>
+  <p class="alert-message">{{ data.message }}</p>
+  <div class="alert-actions" *ngIf="data.buttons === 'ok-cancel'">
+    <button mat-button (click)="close(true)">OK</button>
+    <button mat-button (click)="close(false)">Cancel</button>
+  </div>
+</div>

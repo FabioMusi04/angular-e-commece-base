@@ -1,62 +1,101 @@
-* {
-    box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+// Mixins
+@mixin button-styles {
+  background-color: #d1d0d0;
+  color: #2e2e2e;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.3px;
+  text-transform: none;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+// Styles
+.wrap-register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff !important;
+  flex-direction: column;
+
+  .signup-title {
+    text-align: center;
+    margin-bottom: 24px;
+
+    h1 {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #2e2e2e !important;
+    }
+
+    .login-link {
+      font-size: 14px;
+      color: #555;
+    }
   }
-  
-  :host {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(253, 101, 133, 1);
+}
+
+.container {
+  max-width: 400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  @media (max-width: 480px) {
+    padding: 30px 20px;
   }
-  
-  .signup-card {
-    border-radius: 10px;
-    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
-    width: 40%;
-    height: 450px;
-    background-color: #ffffff;
-    padding: 10px 30px;
-  }
-  
-  .card-title {
-    padding: 10px;
-  }
-  
-  .card-title h1 {
-    font-size: 26px;
-    font-weight: bold;
-  }
-  
-  .form-group input {
-    margin: 5px 0;
+}
+
+.register-box {
+  width: 100%;
+
+  mat-form-field {
     width: 100%;
-    background-color: #e2e2e2;
-    border: none;
-    outline: none;
-    padding: 12px 20px;
-    border-radius: 4px;
+    margin-bottom: 20px;
+
+    &.appearance-outline .mat-mdc-form-field-outline {
+      border-color: #ffffff;
+      border-radius: 12px;
+    }
+
+    .mat-mdc-text-field-wrapper {
+      border-radius: 12px !important;
+    }
+
+    .form-field {
+      font-size: 15px;
+      color: #2e2e2e;
+    }
+
+    mat-label,
+    .mat-mdc-form-field-error {
+      color: #d32f2f !important;
+    }
+
+    .mat-mdc-form-field-error-wrapper {
+      font-size: 13px;
+      margin-top: 4px;
+    }
   }
-  
-  .form-group input[type="submit"] {
-    background-color: #4796ff;
-    color: #ffffff;
-    font-size: 16px;
-    outline: none;
-    border-radius: 5px;
-    border: none;
-    padding: 8px 15px;
-    width: 100%;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+}
+
+button[mat-raised-button] {
+  @include button-styles;
+
+  &:hover {
+    background-color: #acf191;
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(212, 212, 212, 0.15);
   }
-  
-  .card-terms {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-  }
-  
-  .card-terms span {
-    margin: 5px;
-    font-size: 13px;
-  }
+}
