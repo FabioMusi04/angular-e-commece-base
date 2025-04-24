@@ -8,7 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
   standalone: true,
   imports: [CommonModule, MatToolbarModule, MatButtonModule],
   templateUrl: './header-categories.component.html',
-  styleUrls: ['./header-categories.component.scss']
+  styleUrls: ['./header-categories.component.scss'],
 })
 export class HeaderCategoriesComponent {
   categories = [
@@ -31,7 +31,7 @@ export class HeaderCategoriesComponent {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
 
-  onCategorySelect(category: any) {
+  onCategorySelect(category: { name: string }) {
     console.log('Selected category:', category.name);
     // Do something: filter, navigate, etc.
     this.isDropdownOpen = false; // Close the dropdown after selection
