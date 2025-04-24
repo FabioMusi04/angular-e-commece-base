@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule, MatIconButton } from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule, MatPrefix, MatSuffix } from '@angular/material/form-field';
+import { MatFormFieldModule, MatPrefix } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../core/auth/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -19,19 +20,19 @@ import { FormsModule } from '@angular/forms';
     MatToolbarModule,
     MatButtonModule,
     MatPrefix,
-    MatIcon
+    MatIcon,
   ],
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent {
-  isAuthenticated = false
+  authService = inject(AuthService);
   searchText = '';
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   logout(): void {
-    console.log('User logged out');
-    this.isAuthenticated = false;
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 
   goToPage(page: string): void {
