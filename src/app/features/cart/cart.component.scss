@@ -1,0 +1,40 @@
+.cart-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  
+    .cart-item {
+      padding: 16px 0;
+    }
+  
+    .item-details {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+  
+      p {
+        margin: 0;
+      }
+  
+      .quantity {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+  
+        .quantity-input {
+          width: 60px;
+  
+          input {
+            text-align: center;
+          }
+        }
+      }
+    }
+  
+    .order-summary {
+      align-self: flex-end;
+      width: 300px;
+    }
+  }
+  

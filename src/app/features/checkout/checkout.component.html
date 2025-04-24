@@ -1,0 +1,64 @@
+<div class="billing-container">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Billing Information</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form (ngSubmit)="submitBillingInfo()" class="billing-form">
+
+                <div class="row">
+                    <mat-form-field appearance="outline" class="flex-item">
+                        <mat-label>Full Name</mat-label>
+                        <input matInput [(ngModel)]="billing.fullName" name="fullName" required />
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="flex-item">
+                        <mat-label>Email</mat-label>
+                        <input matInput type="email" [(ngModel)]="billing.email" name="email" required />
+                    </mat-form-field>
+                </div>
+
+                <div class="row">
+                    <mat-form-field appearance="outline" class="flex-item">
+                        <mat-label>Address</mat-label>
+                        <input matInput [(ngModel)]="billing.address" name="address" required />
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="flex-item">
+                        <mat-label>City</mat-label>
+                        <input matInput [(ngModel)]="billing.city" name="city" required />
+                    </mat-form-field>
+                </div>
+
+                <div class="row">
+                    <mat-form-field appearance="outline" class="flex-item">
+                        <mat-label>ZIP Code</mat-label>
+                        <input matInput [(ngModel)]="billing.zip" name="zip" required />
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="flex-item">
+                        <mat-label>Card Number</mat-label>
+                        <input matInput maxlength="16" [(ngModel)]="billing.cardNumber" name="cardNumber" required />
+                    </mat-form-field>
+                </div>
+
+                <div class="row">
+                    <mat-form-field appearance="outline" class="flex-item">
+                        <mat-label>Expiration Date</mat-label>
+                        <input matInput placeholder="MM/YY" [(ngModel)]="billing.expiration" name="expiration"
+                            required />
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="flex-item">
+                        <mat-label>CVV</mat-label>
+                        <input matInput type="password" maxlength="4" [(ngModel)]="billing.cvv" name="cvv" required />
+                    </mat-form-field>
+                </div>
+
+                <div class="actions">
+                    <button mat-raised-button color="primary" type="submit">Submit Billing Info</button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>
