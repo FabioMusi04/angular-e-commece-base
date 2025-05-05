@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { ICategory } from '../../../features/products/products-list/products.model';
+import { selectCategories } from '../../../state/categories/categories.selector';
 
 @Component({
   selector: 'app-product-create',
@@ -8,7 +12,7 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
   templateUrl: './product-create.component.html',
   styleUrl: './product-create.component.scss'
 })
-export class ProductCreateComponent implements OnInit {
+export class ProductCreateComponent  {
 
   productForm = this.fb.group({
     name: ['', Validators.required],
@@ -19,11 +23,12 @@ export class ProductCreateComponent implements OnInit {
     imageUrl: [''],
   })
 
-  constructor(private fb: FormBuilder) { }
+  categories$: Observable<ICategory[]>;
 
-  ngOnInit(): void {
-
+  constructor(private fb: FormBuilder, private store: Store) {
+    this.categories$ = this.store.select(selectCategories);
   }
+
 
   onSubmit() {
     if (this.productForm.valid) {
