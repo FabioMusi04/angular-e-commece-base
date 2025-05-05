@@ -1,19 +1,14 @@
 <mat-toolbar color="primary">
     <span>My E-Commerce</span>
     <span class="spacer"></span>
-    <form class="example-form">
-        <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Search</mat-label>
-            <mat-icon matPrefix>search</mat-icon>
-            <input type="search" matInput [(ngModel)]="searchText" name="searchText" #searchbar
-                (input)="onSearch(searchText)">
-        </mat-form-field>
-    </form>
+    <app-search-input (searchSubmitted)="onSearch($event)"></app-search-input>
     <span class="spacer"></span>
     <button mat-button (click)="goToPage('/')">Home</button>
     <button mat-button *ngIf="!this.authService.isLoggedIn()" (click)="goToPage('/login')">Login</button>
     <button mat-button *ngIf="!this.authService.isLoggedIn()" (click)="goToPage('/signup')">Register</button>
     <button mat-button *ngIf="this.authService.isLoggedIn()" (click)="logout()">Logout</button>
+    <button mat-button *ngIf="this.authService.isLoggedIn()" (click)="goToPage('/cart')">Shopping Cart</button>
     <button mat-button *ngIf="this.authService.isLoggedIn()" (click)="goToPage('/orders')">Orders</button>
     <button mat-button *ngIf="this.authService.isLoggedIn()" (click)="goToPage('/products')">Products</button>
+    <button mat-button *ngIf="this.authService.isLoggedIn()" (click)="goToPage('/analytics')">Analytics</button>
 </mat-toolbar>

@@ -1,15 +1,30 @@
-<div>
-    <mat-form-field color="primary">
-        <mat-label>Filter by Status</mat-label>
-        <mat-select [(value)]="statusFilter" (selectionChange)="applyFilter()">
-            <mat-option value="">All</mat-option>
-            <mat-option value="pending">Pending</mat-option>
-            <mat-option value="completed">Completed</mat-option>
-            <mat-option value="cancelled">Cancelled</mat-option>
-        </mat-select>
-    </mat-form-field>
+<div class="orders-list-container">
+    <mat-toolbar color="accent" class="toolbar">
+        <mat-icon>shopping_cart</mat-icon>
+        <span>Orders Management</span>
+    </mat-toolbar>
 
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <div class="filter-container">
+        <mat-form-field appearance="fill" class="filter-field">
+            <mat-label>Filter by Status</mat-label>
+            <mat-select [(value)]="statusFilter" (selectionChange)="applyFilter()">
+                <mat-option value="">
+                    <mat-icon>filter_list</mat-icon> All
+                </mat-option>
+                <mat-option value="pending">
+                    <mat-icon>hourglass_empty</mat-icon> Pending
+                </mat-option>
+                <mat-option value="completed">
+                    <mat-icon>check_circle</mat-icon> Completed
+                </mat-option>
+                <mat-option value="cancelled">
+                    <mat-icon>cancel</mat-icon> Cancelled
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 modern-table">
         <ng-container matColumnDef="orderNumber">
             <th mat-header-cell *matHeaderCellDef> Order # </th>
             <td mat-cell *matCellDef="let order"> {{ order.orderNumber }} </td>
@@ -29,9 +44,15 @@
             <th mat-header-cell *matHeaderCellDef> Status </th>
             <td mat-cell *matCellDef="let order">
                 <mat-select [value]="order.status" (selectionChange)="updateStatus(order, $event)" color="accent">
-                    <mat-option value="pending">Pending</mat-option>
-                    <mat-option value="completed">Completed</mat-option>
-                    <mat-option value="cancelled">Cancelled</mat-option>
+                    <mat-option value="pending">
+                        <mat-icon>hourglass_empty</mat-icon> Pending
+                    </mat-option>
+                    <mat-option value="completed">
+                        <mat-icon>check_circle</mat-icon> Completed
+                    </mat-option>
+                    <mat-option value="cancelled">
+                        <mat-icon>cancel</mat-icon> Cancelled
+                    </mat-option>
                 </mat-select>
             </td>
         </ng-container>
@@ -41,8 +62,8 @@
     </table>
 
     <mat-paginator 
-    [pageSize]="5" 
-    [pageSizeOptions]="[5, 10, 20]" 
-    showFirstLastButtons>
-</mat-paginator>
+        [pageSize]="5" 
+        [pageSizeOptions]="[5, 10, 20]" 
+        showFirstLastButtons>
+    </mat-paginator>
 </div>

@@ -5,6 +5,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIcon } from '@angular/material/icon';
 
 interface Order {
   orderNumber: string;
@@ -19,7 +21,7 @@ interface Order {
   selector: 'app-orders-list',
   templateUrl: './orders-list.component.html',
   styleUrls: ['./orders-list.component.scss'],
-  imports: [MatTableModule, MatSelectModule, MatPaginatorModule],
+  imports: [MatTableModule, MatSelectModule, MatPaginatorModule, MatToolbarModule, MatIcon],
   standalone: true
 })
 export class OrdersListComponent implements OnInit, AfterViewInit {

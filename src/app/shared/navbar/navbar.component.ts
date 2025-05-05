@@ -4,9 +4,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule, MatPrefix } from '@angular/material/form-field';
-import { MatIcon } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
+import { SearchInputComponent } from '../../search-input/search-input.component';
 import { AuthService } from '../../core/auth/auth.service';
 
 @Component({
@@ -19,8 +19,7 @@ import { AuthService } from '../../core/auth/auth.service';
     MatInputModule,
     MatToolbarModule,
     MatButtonModule,
-    MatPrefix,
-    MatIcon,
+    SearchInputComponent,
   ],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
@@ -40,8 +39,8 @@ export class NavbarComponent {
     this.router.navigate([page]);
   }
 
-  onSearch(query: string): void {
-    console.log('Search query:', query);
-    // Implement search logic here, e.g., filter items, make API call, etc.
+  onSearch(term: string): void {
+    // Handle the search term
+    console.log('Searching for:', term);
   }
 }

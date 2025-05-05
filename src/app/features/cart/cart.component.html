@@ -1,0 +1,53 @@
+<div class="cart-container mat-elevation-z4" fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="16px">
+    <mat-card class="cart-details" fxFlex="50">
+        <mat-card-header>
+            <mat-card-title>Your Cart</mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+            <div *ngFor="let item of cartItems; let i = index" class="cart-item">
+                <div fxLayout="row" fxLayoutAlign="space-between center" class="item-details">
+                    <div>
+                        <p>{{ item.name }}</p>
+                        <p>Price: {{ item.price | currency }}</p>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="8px" class="quantity">
+                        <button mat-icon-button color="primary" (click)="decreaseQuantity(i)">
+                            <mat-icon>remove</mat-icon>
+                        </button>
+                        <mat-form-field appearance="fill" class="quantity-input" fxFlex="none">
+                            <input matInput type="number" [(ngModel)]="item.quantity" min="1" required disabled />
+                        </mat-form-field>
+                        <button mat-icon-button color="primary" (click)="increaseQuantity(i)">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="center center">
+                        <button mat-raised-button color="warn" (click)="removeItem(i)">
+                            <mat-icon>delete</mat-icon>
+                            Remove
+                        </button>
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card class="order-summary">
+        <mat-card-header>
+            <mat-card-title>Order Summary</mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+            <p>Total Items: {{ getTotalItems() }}</p>
+            <p>Total Price: {{ getTotalPrice() | currency }}</p>
+        </mat-card-content>
+        <mat-card-actions align="end">
+            <button mat-raised-button color="primary" (click)="checkout()">
+                <mat-icon>shopping_cart</mat-icon>
+                Checkout
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>
