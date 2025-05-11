@@ -3,7 +3,6 @@ import { ICategory } from "../../features/products/products-list/products.model"
 
 export const loadCategories = createAction(
   '[Categories] Load Categories',
-  props<{ page: number; limit: number}>(),
 )
 
 export const loadCategoriesSuccess = createAction(

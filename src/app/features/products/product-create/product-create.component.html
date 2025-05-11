@@ -2,7 +2,19 @@
     <label for="name">Product Name:</label>
     <input id="name" formControlName="name" placeholder="Product Name">
     <label for="category">Category:</label>
-    <input id="category" formControlName="category" placeholder="Category">
+    <mat-form-field>
+        <input type="text"
+            [matAutocomplete]="auto"
+            matInput
+            formControlName="categoryId"
+            placeholder="Category"
+            >
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let category of categories$ | async" [value]="category.id">
+            {{ category.name }}
+          </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
     <label for="description">Description:</label>
     <textarea id="description" formControlName="description" placeholder="Description"></textarea>
     <label for="stock">Stock:</label>

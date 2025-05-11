@@ -15,3 +15,8 @@ export const loadProductsFailure = createAction(
     '[Products] Load Products Failure',
     props<{ error: unknown }>(),
 )
+
+export const createProduct = createAction(
+    '[Products] Create Product',
+    props<{ product: IProduct }>(),
+);
