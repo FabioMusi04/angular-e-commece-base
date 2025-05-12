@@ -19,12 +19,24 @@ export class ProductsEffects {
     )
   );
 
+  loadProduct$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ProductsActions.loadProduct),
+      mergeMap(action =>
+        this.productsService.getProductById(action.id).pipe(
+          map(product => ProductsActions.loadProductSuccess({ product })),
+          catchError(error => of(ProductsActions.loadProductFailure({ error })))
+        )
+      )
+    )
+  );
+
   createProduct$ = createEffect(() =>
   this.actions$.pipe(
     ofType(ProductsActions.createProduct),
     mergeMap(action =>
       this.productsService.createProduct(action.product).pipe(
-        map(product => ProductsActions.loadProductsSuccess({ products: [product] })), 
+        map(product => ProductsActions.loadProductsSuccess({ products: [product] })),
         catchError(error => of(ProductsActions.loadProductsFailure({ error })))
       )
 

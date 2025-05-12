@@ -53,4 +53,8 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     this.router.navigate(['/products/create']);
   }
 
+  onProductClick(product: IProduct) {
+    this.router.navigate(['/products', product.id]);
+  }
+
 }

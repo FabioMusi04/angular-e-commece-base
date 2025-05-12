@@ -6,7 +6,7 @@
     Add Product
   </button>
 
-  <table mat-table [dataSource]="dataSource">
+  <table mat-table [dataSource]="dataSource" >
     <!-- ImageUrl Column -->
     <ng-container matColumnDef="imageUrl">
       <th mat-header-cell *matHeaderCellDef> </th>
@@ -40,7 +40,7 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onProductClick(row)"></tr>
   </table>
 
   <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons aria-label="Select page of products elements">
