@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AnalyticsService } from '../analytics.service';
 
 interface Order {
   id: string;
@@ -15,27 +16,19 @@ interface Order {
   imports: [CommonModule],
   standalone: true,
 })
-export class RecentOrdersComponent {
-  recentOrders: Order[] = [
-    { id: '#1001', customer: 'John Doe', amount: 125.5, status: 'completed' },
-    { id: '#1002', customer: 'Jane Smith', amount: 89.99, status: 'pending' },
-    {
-      id: '#1003',
-      customer: 'Robert Johnson',
-      amount: 210.0,
-      status: 'completed',
-    },
-    {
-      id: '#1004',
-      customer: 'Emily Davis',
-      amount: 55.75,
-      status: 'cancelled',
-    },
-    {
-      id: '#1005',
-      customer: 'Michael Brown',
-      amount: 199.99,
-      status: 'completed',
-    },
-  ];
+export class RecentOrdersComponent implements OnInit {
+  recentOrders: Order[] = [];
+
+  constructor(private analyticsService: AnalyticsService) {}
+
+  ngOnInit(): void {
+    this.analyticsService.getRecentOrders().subscribe((orders) => {
+      this.recentOrders = orders.map((order) => ({
+        id: `#${order.id}`,
+        customer: order.customer,
+        amount: order.total,
+        status: order.status || 'pending', // Use the status from the service or default to 'pending'
+      }));
+    });
+  }
 }
