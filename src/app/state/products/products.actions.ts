@@ -35,3 +35,8 @@ export const createProduct = createAction(
     '[Products] Create Product',
     props<{ product: IProduct }>(),
 );
+
+export const updateProduct = createAction(
+    '[Products] Update Product',
+    props<{ id: string; product: IProduct }>(),
+);
