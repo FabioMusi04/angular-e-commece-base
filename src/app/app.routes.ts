@@ -37,6 +37,11 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./features/analytics/analytics.module').then((m) => m.AnalyticsModule),
   },
+    {
+        path: 'products',
+        canMatch: [canMatchAuthGuard],
+        loadChildren: () => import('./features/products/products.module').then(m => m.ProductsRoutingModule)
+    },
   {
     path: 'login',
     loadChildren: () =>

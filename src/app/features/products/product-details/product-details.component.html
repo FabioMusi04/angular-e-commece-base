@@ -1,0 +1,53 @@
+<button mat-raised-button (click)="onButtonClick()">
+  <mat-icon>edit</mat-icon>
+  Modify Product
+</button>
+
+<div class="product-details" *ngIf="!update">
+  <h2>{{ product?.name }}</h2>
+  <img [src]="product?.imageUrl" [alt]="product?.name" class="product-image" />
+  <p><strong>Price:</strong> {{ product?.price }}</p>
+  <p><strong>Description:</strong> {{ product?.description }}</p>
+  <p><strong>Category:</strong> {{ product?.category?.name }}</p>
+  <p><strong>Stock:</strong> {{ product?.stock }}</p>
+</div>
+
+<form *ngIf="update" [formGroup]="productForm" (ngSubmit)="onSubmit()">
+  <h2>Update Product</h2>
+  <label for="name">Product Name:</label>
+  <mat-form-field>
+    <input matInput formControlName="name" placeholder="Product Name" [value]="product?.name" />
+  </mat-form-field>
+  <label for="category">Category:</label>
+  <mat-form-field>
+    <input
+      [matAutocomplete]="auto"
+      matInput
+      formControlName="categoryId"
+      placeholder="Category"
+      [value]="product?.category?.id"
+    />
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let category of categories$ | async" [value]="category.id">
+        {{ category.name }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <label for="description">Description:</label>
+  <mat-form-field>
+    <textarea matInput formControlName="description" placeholder="Description">{{ product?.description }}</textarea>
+  </mat-form-field>
+  <label for="stock">Stock:</label>
+  <mat-form-field>
+    <input type="number" matInput formControlName="stock" placeholder="Stock" [value]="product?.stock" />
+  </mat-form-field>
+  <label for="price">Price:</label>
+  <mat-form-field>
+    <input type="number" matInput formControlName="price" placeholder="Price" [value]="product?.price" />
+  </mat-form-field>
+  <label for="image-url">Image URL:</label>
+  <mat-form-field>
+    <input type="text" matInput formControlName="imageUrl" placeholder="Image URL" [value]="product?.imageUrl" />
+  </mat-form-field>
+  <button type="submit" [disabled]="productForm.invalid">Submit</button>
+</form>

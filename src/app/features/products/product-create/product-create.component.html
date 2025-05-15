@@ -1,0 +1,37 @@
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <label for="name">Product Name:</label>
+    <mat-form-field>
+        <input type="text" matInput formControlName="name" placeholder="Product Name">
+    </mat-form-field>
+    <label for="category">Category:</label>
+    <mat-form-field>
+        <input type="text"
+            [matAutocomplete]="auto"
+            matInput
+            formControlName="categoryId"
+            placeholder="Category"
+            >
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let category of categories$ | async" [value]="category.id">
+            {{ category.name }}
+          </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+    <label for="description">Description:</label>
+    <mat-form-field>
+        <textarea matInput formControlName="description" placeholder="Description"></textarea>
+    </mat-form-field>
+    <label for="stock">Stock:</label>
+    <mat-form-field>
+        <input type="number" matInput formControlName="stock" placeholder="Stock">
+    </mat-form-field>
+    <label for="price">Price:</label>
+    <mat-form-field>
+        <input type="number" matInput formControlName="price" placeholder="Price">
+    </mat-form-field>
+    <label for="image-url">Image URL:</label>
+    <mat-form-field>
+        <input type="text" matInput formControlName="imageUrl" placeholder="Image URL">
+    </mat-form-field>
+    <button type="submit" [disabled]="productForm.invalid">Submit</button>
+</form>

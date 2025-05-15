@@ -1,0 +1,79 @@
+.product-details {
+  background: #fff;
+  border-radius: 8px;
+  padding: 32px 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  max-width: 420px;
+  margin: 32px auto;
+  text-align: center;
+
+  h2 {
+    margin-bottom: 16px;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .product-image {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #eee;
+    background: #fafafa;
+  }
+
+  p {
+    margin: 8px 0;
+    color: #555;
+    font-size: 16px;
+  }
+
+  strong {
+    color: #222;
+  }
+}
+
+form {
+  background: #fff;
+  border-radius: 8px;
+  padding: 32px 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  max-width: 420px;
+  margin: 32px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  h2 {
+    margin-bottom: 12px;
+    color: #333;
+    font-weight: 600;
+  }
+
+  label {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 2px;
+    margin-top: 8px;
+    align-self: flex-start;
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  button[type="submit"] {
+    margin-top: 16px;
+    align-self: flex-end;
+    background: #1976d2;
+    color: #fff;
+  }
+}
+
+button[mat-raised-button] {
+  margin: 24px auto 0 auto;
+  display: block;
+  background: #1976d2;
+  color: #fff;
+}
