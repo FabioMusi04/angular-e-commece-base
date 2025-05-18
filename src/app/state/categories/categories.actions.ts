@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { ICategory } from "../../features/products/products-list/products.model";
+import { ICategory } from "../../features/products/products.model";
 
 export const loadCategories = createAction(
   '[Categories] Load Categories',

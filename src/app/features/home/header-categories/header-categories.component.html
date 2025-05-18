@@ -1,21 +1,34 @@
 <mat-toolbar color="primary">
-    <div class="header-categories">
-        <div class="categories-row">
-            <button *ngFor="let category of categories.slice(0, 6)" (click)="onCategorySelect(category)">
-                {{ category.name }}
-            </button>
-            <button mat-button (click)="toggleDropdown()">Show All</button>
-        </div>
+  <div class="header-categories">
+    <div class="categories-row">
+      <button
+        *ngFor="let category of categories.slice(0, 6)"
+        (click)="onCategorySelect(category)"
+      >
+        {{ category.name }}
+      </button>
+      <button mat-button (click)="toggleDropdown()">Show All</button>
     </div>
+  </div>
 
-    <div *ngIf="isDropdownOpen" class="dropdown-overlay">
-        <div class="dropdown-content">
-            <div class="categories-row">
-                <button *ngFor="let category of categories" (click)="onCategorySelect(category)">
-                    {{ category.name }}
-                </button>
-            </div>
-            <button mat-button color="warn" class="close-button" (click)="toggleDropdown()">Close</button>
-        </div>
+  <div *ngIf="isDropdownOpen" class="dropdown-overlay">
+    <div class="dropdown-content">
+      <div class="categories-row">
+        <button
+          *ngFor="let category of categories"
+          (click)="onCategorySelect(category)"
+        >
+          {{ category.name }}
+        </button>
+      </div>
+      <button
+        mat-button
+        color="warn"
+        class="close-button"
+        (click)="toggleDropdown()"
+      >
+        Close
+      </button>
     </div>
+  </div>
 </mat-toolbar>

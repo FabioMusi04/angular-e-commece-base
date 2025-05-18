@@ -1,29 +1,94 @@
-table {
+.products-list-container {
+  background: #f7fafc;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+  padding: 24px 32px 32px 32px;
+  margin: 32px auto;
+}
+
+.toolbar {
+  border-radius: 8px 8px 0 0;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  .mat-icon {
+    margin-right: 8px;
+  }
+  .spacer {
+    flex: 1 1 auto;
+  }
+  button {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+}
+
+.filter-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 18px;
+  .filter-field {
+    min-width: 260px;
+    margin-right: 12px;
+  }
+}
+
+.modern-table {
   width: 100%;
-  border-collapse: collapse;
-  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  th, td {
+    padding: 14px 18px;
+    font-size: 15px;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+  }
+  th {
+    background: #f3f6fa;
+    font-weight: 700;
+    color: #374151;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #e0e7ef;
+  }
+  tr {
+    transition: background 0.18s;
+    cursor: pointer;
+  }
+  tr:hover {
+    background: #f0f6ff;
+  }
+  img {
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    border: 1px solid #e5e7eb;
+    background: #f9fafb;
+    object-fit: cover;
+  }
 }
 
-th, td {
-  padding: 12px 16px;
-  text-align: left;
-  border-bottom: 1px solid #e0e0e0;
+.mat-paginator {
+  margin-top: 18px;
+  border-radius: 0 0 8px 8px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  padding: 8px 0;
 }
 
-th {
-  background-color: #f5f5f5;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-}
-
-tr:hover {
-  background-color: #f9f9f9;
-}
-
-.table-wrapper {
-  margin-top: 16px;
-  max-height: 630px;
-  overflow-y: auto;
-  display: block;
+@media (max-width: 900px) {
+  .products-list-container {
+    padding: 16px 8px;
+  }
+  .modern-table th, .modern-table td {
+    padding: 10px 8px;
+    font-size: 14px;
+  }
+  .filter-container {
+    flex-direction: column;
+    align-items: stretch;
+    .filter-field {
+      margin-bottom: 10px;
+      margin-right: 0;
+    }
+  }
 }

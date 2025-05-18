@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import * as CategoriesAction from './categories.actions';
-import { ICategory } from "../../features/products/products-list/products.model";
+import { ICategory } from "../../features/products/products.model";
 
 export interface ICategoryState {
     categories: ICategory[];

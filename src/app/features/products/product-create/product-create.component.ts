@@ -5,7 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { Store } from '@ngrx/store';
 import { loadCategories } from '../../../state/categories/categories.actions';
 import { Observable } from 'rxjs';
-import { ICategory, IProduct } from '../products-list/products.model';
+import { ICategory, IProduct } from '../products.model';
 import { selectCategories } from '../../../state/categories/categories.selector';
 import { CommonModule } from '@angular/common';
 import { createProduct } from '../../../state/products/products.actions';

@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
-import { ICategory, IProduct } from '../products-list/products.model';
+import { ICategory, IProduct } from '../products.model';
 import { selectCategories } from '../../../state/categories/categories.selector';
 import { loadCategories } from '../../../state/categories/categories.actions';
 
