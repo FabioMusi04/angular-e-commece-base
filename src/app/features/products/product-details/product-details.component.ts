@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { selectProduct } from '../../../state/products/products.selectors';
 import { loadProduct, updateProduct } from '../../../state/products/products.actions';
 import { ActivatedRoute } from '@angular/router';
-import { MatButton } from '@angular/material/button';
+import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -14,11 +14,13 @@ import { MatInputModule } from '@angular/material/input';
 import { ICategory, IProduct } from '../products.model';
 import { selectCategories } from '../../../state/categories/categories.selector';
 import { loadCategories } from '../../../state/categories/categories.actions';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [MatButton, MatIcon, CommonModule, ReactiveFormsModule, MatAutocompleteModule, MatInputModule],
+  imports: [MatButton, MatIcon, CommonModule, ReactiveFormsModule, MatAutocompleteModule, MatInputModule, MatCardModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatLabel],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.scss'
 })
@@ -81,5 +83,7 @@ export class ProductDetailsComponent implements OnInit {
     }
   }
 
-
+  goBack() {
+    window.history.back();
+  }
 }

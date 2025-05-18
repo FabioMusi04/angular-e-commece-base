@@ -9,11 +9,13 @@ import { ICategory, IProduct } from '../products.model';
 import { selectCategories } from '../../../state/categories/categories.selector';
 import { CommonModule } from '@angular/common';
 import { createProduct } from '../../../state/products/products.actions';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-product-create',
   standalone: true,
-  imports: [ReactiveFormsModule, MatAutocompleteModule, MatInputModule, CommonModule],
+  imports: [ReactiveFormsModule, MatAutocompleteModule, MatInputModule, CommonModule, MatIconModule, MatButtonModule],
   templateUrl: './product-create.component.html',
   styleUrl: './product-create.component.scss'
 })
@@ -46,6 +48,10 @@ export class ProductCreateComponent implements OnInit {
       this.store.dispatch(createProduct({ product }));
 
     }
+  }
+
+  goBack() {
+    window.history.back();
   }
 
 }
