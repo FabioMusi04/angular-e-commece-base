@@ -1,71 +1,186 @@
+// Clear out duplicate styles and create a clean neobrutalism header
+
+.header-categories-bar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background: #1a2238;
+  border-bottom: 4px solid #0a0f1a;
+  padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 8px 8px 0 #0a0f1a;
+}
+
 .header-categories {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 12px 24px;
+  position: relative;
+  min-height: 56px;
+  background: #1a2238;
+  border: 3px solid #0a0f1a;
+  border-top: none;
+  border-bottom: none;
+  z-index: 2;
+}
 
-    .categories-row {
-        display: flex;
-        gap: 8px;
+.categories-row {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+  
+  button {
+    flex: 0 0 auto;
+    text-align: center;
+    padding: 8px 20px;
+    border: 3px solid #0a0f1a;
+    border-radius: 10px;
+    background: #222c44;
+    color: #21a0a0;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.01em;
+    box-shadow: 4px 4px 0 #0a0f1a;
+    cursor: pointer;
+    transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    white-space: nowrap;
 
-        button {
-            flex: 1;
-            text-align: center;
-            padding: 8px 16px;
-            border: none;
-            background: none;
-            cursor: pointer;
-            color: white;
-        }
-
-        button:hover {
-            text-decoration: underline;
-        }
+    &:hover,
+    &:focus {
+      background: #283655;
+      color: #fff;
+      box-shadow: 2px 2px 0 #0a0f1a;
+      text-decoration: none;
+      outline: none;
+      transform: translateY(2px) translateX(2px);
     }
+  }
+}
 
-    button[mat-button] {
-        margin-left: 16px;
-    }
+button[mat-button] {
+  margin-left: 18px;
+  border: 3px solid #0a0f1a;
+  border-radius: 10px;
+  background: #21a0a0;
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 4px 4px 0 #0a0f1a;
+  padding: 8px 20px;
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+  transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  &:hover,
+  &:focus {
+    background: #278ea5;
+    color: #fff;
+    box-shadow: 2px 2px 0 #0a0f1a;
+    outline: none;
+    transform: translateY(2px) translateX(2px);
+  }
 }
 
 .dropdown-overlay {
-    position: absolute;
-    top: 0%;
-    left: 0;
-    width: 100%;
-    background-color: #0f0e30;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 2;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #1a2238;
+  border: 3px solid #0a0f1a;
+  border-radius: 0 0 14px 14px;
+  box-shadow: 8px 8px 0 #0a0f1a;
+  z-index: 1;
+  animation: dropdownFadeIn 0.22s cubic-bezier(.4,0,.2,1);
 
-    .dropdown-content {
-        display: flex;
-        flex-direction: column;
-        padding: 16px;
+  .dropdown-content {
+    display: flex;
+    flex-direction: column;
+    padding: 24px 16px 16px 16px;
 
-        .categories-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
+    .categories-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      overflow-x: visible;
 
-            button {
-                flex: 1 1 calc(33.33% - 16px);
-                /* 3 buttons per row */
-                text-align: center;
-                padding: 8px 16px;
-                border: none;
-                background: none;
-                cursor: pointer;
-                color: white;
-            }
-
-            button:hover {
-                text-decoration: underline;
-            }
-        }
-
-        .close-button {
-            margin-top: 16px;
-            align-self: flex-end;
-            background-color: rgb(126, 27, 0);
-        }
+      button {
+        flex: 1 1 calc(33.33% - 16px);
+        min-width: 120px;
+        max-width: none;
+        text-align: center;
+        white-space: normal;
+      }
     }
+
+    .close-button {
+      margin-top: 24px;
+      align-self: flex-end;
+      background: #fa5252;
+      color: #fff;
+      border: 3px solid #0a0f1a;
+      border-radius: 10px;
+      box-shadow: 4px 4px 0 #0a0f1a;
+      font-weight: 700;
+      padding: 8px 24px;
+      font-size: 1rem;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+      &:hover,
+      &:focus {
+        background: #ff6b6b;
+        box-shadow: 2px 2px 0 #0a0f1a;
+        outline: none;
+        transform: translateY(2px) translateX(2px);
+      }
+    }
+  }
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .header-categories {
+    padding: 10px 16px;
+  }
+  
+  .categories-row {
+    gap: 8px;
+    
+    button {
+      padding: 6px 16px;
+      font-size: 0.9rem;
+    }
+  }
+  
+  button[mat-button] {
+    margin-left: 10px;
+    padding: 6px 16px;
+    font-size: 0.9rem;
+  }
 }

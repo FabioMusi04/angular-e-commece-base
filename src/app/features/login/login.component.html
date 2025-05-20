@@ -2,14 +2,14 @@
     <mat-card-title class="signup-title">
         <h1>Create Account</h1>
         <span class="login-link">
-            Don't have an account? <a routerLink="/signup">Sign Up</a>
+            Don't have an account? <a routerLink="/signup" style="color: red;">Sign Up</a>
         </span>
     </mat-card-title>
     <div class="container">
         <form class="" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <mat-card class="login-box">
                 <mat-card-content>
-                    <mat-form-field appearance="outline">
+                    <mat-form-field >
                         <mat-label>Email</mat-label>
                         <input matInput type="email" placeholder="Enter your email" formControlName="email" required
                             class="form-field">
@@ -17,7 +17,7 @@
                         <mat-error *ngIf="loginForm.get('email')?.hasError('email')">Invalid email format</mat-error>
                     </mat-form-field>
 
-                    <mat-form-field appearance="outline">
+                    <mat-form-field>
                         <mat-label>Password</mat-label>
                         <input matInput type="password" placeholder="Enter your password" formControlName="password"
                             required class="form-field">

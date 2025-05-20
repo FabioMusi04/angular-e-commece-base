@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<div class="header-categories-bar">
   <div class="header-categories">
     <div class="categories-row">
       <button
@@ -9,26 +9,26 @@
       </button>
       <button mat-button (click)="toggleDropdown()">Show All</button>
     </div>
-  </div>
 
-  <div *ngIf="isDropdownOpen" class="dropdown-overlay">
-    <div class="dropdown-content">
-      <div class="categories-row">
+    <div *ngIf="isDropdownOpen" class="dropdown-overlay">
+      <div class="dropdown-content">
+        <div class="categories-row">
+          <button
+            *ngFor="let category of categories"
+            (click)="onCategorySelect(category)"
+          >
+            {{ category.name }}
+          </button>
+        </div>
         <button
-          *ngFor="let category of categories"
-          (click)="onCategorySelect(category)"
+          mat-button
+          color="warn"
+          class="close-button"
+          (click)="toggleDropdown()"
         >
-          {{ category.name }}
+          Close
         </button>
       </div>
-      <button
-        mat-button
-        color="warn"
-        class="close-button"
-        (click)="toggleDropdown()"
-      >
-        Close
-      </button>
     </div>
   </div>
-</mat-toolbar>
+</div>
