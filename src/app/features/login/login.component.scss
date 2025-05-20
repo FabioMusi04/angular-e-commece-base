@@ -258,30 +258,3 @@ button[mat-raised-button] {
     box-shadow: 2px 2px 0 #0a0f1a;
   }
 }
-
-/* Forgot password link */
-.forgot-password {
-  display: block;
-  text-align: center;
-  margin-top: 28px;
-  color: #21a0a0;
-  font-weight: 700;
-  font-size: 16px;
-  text-decoration: underline;
-  text-decoration-style: wavy;
-  text-decoration-color: #21a0a0;
-  padding: 8px 16px;
-  background: #1a2238;
-  border-radius: 12px;
-  width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
-  border: 2px dashed #21a0a0;
-  
-  &:hover {
-    color: #33c9c9;
-    transform: translateY(-3px);
-    display: inline-block;
-    background: #222c44;
-  }
-}
