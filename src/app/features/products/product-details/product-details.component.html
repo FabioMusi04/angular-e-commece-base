@@ -17,59 +17,49 @@
     </mat-card-header>
     <img mat-card-image [src]="product?.imageUrl" [alt]="product?.name" class="product-image" />
     <mat-card-content>
-      <p><strong>Price:</strong> {{ product?.price | currency }}</p>
-      <p><strong>Description:</strong> {{ product?.description }}</p>
-      <p><strong>Category:</strong> {{ product?.category?.name }}</p>
-      <p><strong>Stock:</strong> {{ product?.stock }}</p>
+      <div class="product-attribute brutalist-attribute"><strong>Price:</strong></div>
+      <div class="product-attribute-value brutalist-value">{{ product?.price | currency }}</div>
+      <div class="product-attribute brutalist-attribute"><strong>Description:</strong></div>
+      <div class="product-attribute-value brutalist-value">{{ product?.description }}</div>
+      <div class="product-attribute brutalist-attribute"><strong>Category:</strong></div>
+      <div class="product-attribute-value brutalist-value">{{ product?.category?.name }}</div>
+      <div class="product-attribute brutalist-attribute"><strong>Stock:</strong></div>
+      <div class="product-attribute-value brutalist-value">{{ product?.stock }}</div>
     </mat-card-content>
   </mat-card>
 
   <mat-card *ngIf="update" class="update-form-card">
-    <mat-card-header>
-      <mat-card-title>Update Product</mat-card-title>
-    </mat-card-header>
+    <div class="custom-update-title">Update Product</div>
     <mat-card-content>
       <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="update-form">
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Product Name</mat-label>
-          <input matInput formControlName="name" placeholder="Product Name" />
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Category</mat-label>
-          <input
-            [matAutocomplete]="auto"
-            matInput
-            formControlName="categoryId"
-            placeholder="Category"
-          />
-          <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let category of categories$ | async" [value]="category.id">
+        <div class="custom-form-group full-width">
+          <label for="name">Product Name</label>
+          <input id="name" type="text" formControlName="name" placeholder="Product Name" />
+        </div>
+        <div class="custom-form-group full-width">
+          <label for="categoryId">Category</label>
+          <select id="categoryId" formControlName="categoryId">
+            <option *ngFor="let category of categories$ | async" [value]="category.id">
               {{ category.name }}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Description</mat-label>
-          <textarea matInput formControlName="description" placeholder="Description"></textarea>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Stock</mat-label>
-          <input type="number" matInput formControlName="stock" placeholder="Stock" />
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Price</mat-label>
-          <input type="number" matInput formControlName="price" placeholder="Price" />
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Image URL</mat-label>
-          <input type="text" matInput formControlName="imageUrl" placeholder="Image URL" />
-        </mat-form-field>
-
+            </option>
+          </select>
+        </div>
+        <div class="custom-form-group full-width">
+          <label for="description">Description</label>
+          <textarea id="description" formControlName="description" placeholder="Description"></textarea>
+        </div>
+        <div class="custom-form-group full-width">
+          <label for="stock">Stock</label>
+          <input id="stock" type="number" formControlName="stock" placeholder="Stock" />
+        </div>
+        <div class="custom-form-group full-width">
+          <label for="price">Price</label>
+          <input id="price" type="number" formControlName="price" placeholder="Price" />
+        </div>
+        <div class="custom-form-group full-width">
+          <label for="imageUrl">Image URL</label>
+          <input id="imageUrl" type="text" formControlName="imageUrl" placeholder="Image URL" />
+        </div>
         <div class="form-actions">
           <button mat-raised-button color="primary" type="submit" [disabled]="productForm.invalid">
             Submit

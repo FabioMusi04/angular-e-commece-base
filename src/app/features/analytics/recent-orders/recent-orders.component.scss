@@ -1,60 +1,97 @@
 /* filepath: c:\Users\Giaco\Documents\Programmazione\Angular\src\app\features\analytics\recent-orders\recent-orders.component.scss */
 
 /* Modern table styling */
-.orders table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.9rem;
-  color: var(--text-color);
-}
+.orders {
+  background: linear-gradient(120deg, rgba(36, 42, 66, 0.93) 65%, rgba(67, 97, 238, 0.07) 100%, rgba(33, 160, 160, 0.06) 120%);
+  border-radius: 18px 32px 18px 32px;
+  box-shadow: 0 6px 0 #181a2a, 0 0 0 2.5px #23264d, 0 2px 24px 0 rgba(67,97,238,0.08);
+  padding: 1.5rem 1.5rem 1.2rem 1.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  overflow: hidden;
 
-.orders th,
-.orders td {
-  text-align: left;
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--bg-color);
-}
-
-.orders th {
-  background-color: var(--bg-color);
-  text-transform: uppercase;
-  font-weight: 600;
-  color: var(--text-light);
-}
-
-.orders tr:hover {
-  background-color: var(--light-color);
-}
-
-.orders td {
-  vertical-align: middle;
-}
-
-/* Status styling */
-.status {
-  display: flex;
-  align-items: center;
-  text-transform: capitalize; /* Capitalizes the first letter of the status */
-  font-weight: 500;
-
-  &::before {
-    content: '';
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    margin-right: 8px;
+  &__header {
+    margin-bottom: 1.2rem;
+    h2 {
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: #b7b7c1;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 1.5px 1.5px 0 #181a2a;
+      background: rgba(63, 55, 201, 0.07);
+      border-radius: 7px 16px 7px 16px;
+      padding: 0.4rem 1.1rem;
+      display: inline-block;
+      border: 1.5px solid #23264d;
+      box-shadow: 1.5px 1.5px 0 #181a2a;
+      margin: 0;
+    }
   }
 
-  &--completed::before {
-    background-color: #059669;
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.98rem;
+    color: #f3f3f7;
+    background: transparent;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: none;
   }
 
-  &--pending::before {
-    background-color: var(--warning-color);
+  th, td {
+    text-align: left;
+    padding: 13px 18px;
+    border-bottom: 1.5px solid #23264d;
+    background: transparent;
   }
 
-  &--cancelled::before {
-    background-color: var(--danger-color);
+  th {
+    background: rgba(63, 55, 201, 0.07);
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #b7b7c1;
+    letter-spacing: 1.2px;
+    font-size: 0.95rem;
+    border-bottom: 2.5px solid #23264d;
+  }
+
+  tr:hover {
+    background: rgba(67, 97, 238, 0.08);
+  }
+
+  td {
+    vertical-align: middle;
+    font-weight: 600;
+    color: #f3f3f7;
+  }
+
+  .status {
+    display: flex;
+    align-items: center;
+    text-transform: capitalize;
+    font-weight: 700;
+    font-size: 0.98rem;
+    letter-spacing: 0.5px;
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 8px;
+      border: 1.5px solid #23264d;
+    }
+    &--completed::before {
+      background-color: #059669;
+    }
+    &--pending::before {
+      background-color: #f8961e;
+    }
+    &--cancelled::before {
+      background-color: #ff1744;
+    }
   }
 }

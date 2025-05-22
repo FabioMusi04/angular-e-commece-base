@@ -1,21 +1,6 @@
-// Colors - Use CSS variables for theming
-:root {
-    --primary-color: #2563eb;      // Royal Blue
-    --secondary-color: #4f46e5;    // Indigo
-    --success-color: #059669;      // Emerald
-    --danger-color: #dc2626;       // Red
-    --warning-color: #f59e0b;      // Amber
-    --light-color: #f9fafb;        // Gray-50
-    --dark-color: #1f2937;         // Gray-800
-    --text-color: #111827;         // Gray-900
-    --text-light: #6b7280;         // Gray-500
-    --bg-color: #f3f4f6;           // Gray-100
-    --card-bg: #ffffff;            // White
-}
-
 // Typography
 $base-font-size: 1rem;
-$font-stack: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$font-stack: 'Bebas Neue', 'Montserrat', 'Arial Black', Arial, sans-serif;
 
 // Spacing
 $spacing-unit: 1rem;
@@ -30,49 +15,123 @@ $breakpoint-md: 768px;
 $breakpoint-lg: 992px;
 $breakpoint-xl: 1200px;
 
+$primary-color: #0d0d0d;      // Jet black for cards and text
+$secondary-color: #00f0ff;    // Neon cyan accent
+$success-color: #ffea00;      // Neon yellow for highlights
+$danger-color: #ff1744;       // Neon red
+$warning-color: #ffea00;      // Neon yellow
+$light-color: #fff;           // White
+$dark-color: #000;            // Black
+$text-color: #fff;            // White for high contrast
+
 .metrics {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: $spacing-md;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: $spacing-md;
 
-    &__card {
-        background: var(--card-bg);
-        border-radius: 12px;
-        padding: $spacing-lg;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+  &__card {
+    background: linear-gradient(120deg, rgba(36, 42, 66, 0.93) 65%, rgba(67, 97, 238, 0.07) 100%, rgba(33, 160, 160, 0.06) 120%);
+    backdrop-filter: blur(14px) saturate(1.08);
+    border-radius: 18px 32px 18px 32px;
+    border: 3.5px solid #23264d;
+    box-shadow: 0 6px 0 #181a2a, 0 0 0 2.5px #23264d, 0 2px 24px 0 rgba(67,97,238,0.08);
+    padding: $spacing-xl $spacing-lg $spacing-lg $spacing-lg;
+    color: #f3f3f7;
+    font-family: $font-stack;
+    position: relative;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    transition: box-shadow 0.18s, border-color 0.18s, transform 0.18s, background 0.18s;
+    outline: none;
+    z-index: 1;
+    overflow: hidden;
 
-        &:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        h3 {
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--text-light);
-            margin: 0 0 $spacing-sm;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .value {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin: 0;
-            color: var(--secondary-color);
-        }
-
-        &--sales .value {
-            color: var(--secondary-color);
-        }
-
-        &--orders .value {
-            color: var(--success-color);
-        }
-
-        &--products .value {
-            color: var(--warning-color);
-        }
+    &::before {
+      content: '';
+      position: absolute;
+      top: -30px; left: -30px; right: -30px; bottom: -30px;
+      background: radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 70%);
+      z-index: 0;
+      pointer-events: none;
     }
+
+    &:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 14px 0 #181a2a, 0 0 0 6px #3f37c9, 0 4px 32px 0 rgba(67,97,238,0.13);
+      border-color: #3f37c9;
+      background: linear-gradient(135deg, rgba(30,36,58,0.98) 60%, rgba(67,97,238,0.18) 100%);
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: #b7b7c1;
+      margin: 0 0 $spacing-sm;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 1.5px 1.5px 0 #181a2a;
+      font-family: $font-stack;
+      background: rgba(63, 55, 201, 0.07);
+      border-radius: 7px 16px 7px 16px;
+      padding: 0.4rem 1.1rem;
+      display: inline-block;
+      border: 1.5px solid #23264d;
+      box-shadow: 1.5px 1.5px 0 #181a2a;
+      outline: none;
+      position: relative;
+      z-index: 2;
+    }
+
+    .value {
+      font-size: 2rem;
+      font-weight: 900;
+      margin: 0;
+      color: #3f37c9;
+      text-shadow: 1px 1px 0 #181a2a;
+      background: rgba(63, 55, 201, 0.06);
+      border-radius: 7px 16px 7px 16px;
+      padding: 0.4rem 1.1rem;
+      display: inline-block;
+      border: 1.5px solid #23264d;
+      box-shadow: 1.5px 1.5px 0 #181a2a;
+      font-family: $font-stack;
+      letter-spacing: 1.2px;
+      outline: none;
+      position: relative;
+      z-index: 2;
+    }
+
+    .metric-label {
+      font-size: 0.85rem;
+      color: #8d99ae;
+      margin-top: 0.3rem;
+      letter-spacing: 1px;
+      font-weight: 700;
+      text-transform: uppercase;
+      opacity: 0.85;
+      position: relative;
+      z-index: 2;
+    }
+
+    &--sales .value {
+      color: #4361ee;
+      border-color: #4361ee;
+      background: rgba(67, 97, 238, 0.08);
+      text-shadow: 1px 1px 0 #181a2a;
+    }
+
+    &--orders .value {
+      color: #21a0a0;
+      border-color: #21a0a0;
+      background: rgba(33, 160, 160, 0.08);
+      text-shadow: 1px 1px 0 #181a2a;
+    }
+
+    &--products .value {
+      color: #f8961e;
+      border-color: #f8961e;
+      background: rgba(248, 150, 30, 0.08);
+      text-shadow: 1px 1px 0 #181a2a;
+    }
+  }
 }
