@@ -8,7 +8,8 @@
         <div class="neo-billing-info" @slideInAnimation>
             <h2>BILLING INFORMATION</h2>
             
-            <form (ngSubmit)="submitBillingInfo()" class="neo-form">                <div class="form-section">
+            <form (ngSubmit)="submitBillingInfo()" class="neo-form">
+                <div class="form-section">
                     <h3>PERSONAL DETAILS</h3>
                     <div class="form-row">
                         <div class="form-group">
@@ -46,7 +47,8 @@
                         </div>
                     </div>
                 </div>
-                  <div class="form-section">
+                
+                <div class="form-section">
                     <h3>SHIPPING ADDRESS</h3>
                     <div class="form-row">
                         <div class="form-group">
@@ -102,7 +104,8 @@
                         </div>
                     </div>
                 </div>
-                  <div class="form-section">
+                
+                <div class="form-section">
                     <h3>PAYMENT DETAILS</h3>
                     <div class="form-row">
                         <div class="form-group full-width">
@@ -165,16 +168,16 @@
                         </div>
                     </div>
                 </div>
-                  <div class="form-actions">
-                    <button type="button" class="neo-button secondary" routerLink="/cart">
+                
+                <div class="form-actions">
+                    <button type="button" class="neo-btn secondary" routerLink="/cart">
                         <mat-icon>arrow_back</mat-icon>
                         <span>BACK TO CART</span>
                     </button>
                     <button 
                         type="submit" 
-                        class="neo-button primary"
+                        class="neo-btn primary"
                         [disabled]="fullName.invalid || email.invalid || address.invalid || city.invalid || zip.invalid || cardNumber.invalid || expiration.invalid || cvv.invalid"
-                        [class.disabled]="fullName.invalid || email.invalid || address.invalid || city.invalid || zip.invalid || cardNumber.invalid || expiration.invalid || cvv.invalid"
                     >
                         <mat-icon>check_circle</mat-icon>
                         <span>COMPLETE ORDER</span>
@@ -182,7 +185,8 @@
                 </div>
             </form>
         </div>
-          <div class="neo-order-summary" @slideInAnimation>
+        
+        <div class="neo-order-summary" @slideInAnimation>
             <h2>ORDER SUMMARY</h2>
             
             <div class="order-items">
