@@ -8,6 +8,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { SearchInputComponent } from '../../search-input/search-input.component';
 import { AuthService } from '../../core/auth/auth.service';
+import { MatIconModule } from '@angular/material/icon';
+
 
 @Component({
   selector: 'app-navbar',
@@ -20,6 +22,7 @@ import { AuthService } from '../../core/auth/auth.service';
     MatToolbarModule,
     MatButtonModule,
     SearchInputComponent,
+    MatIconModule
   ],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],

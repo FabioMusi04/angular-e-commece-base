@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HeaderCategoriesComponent } from './header-categories/header-categories.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,5 +10,9 @@ import { HeaderCategoriesComponent } from './header-categories/header-categories
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
+  constructor(private router: Router) {}
 
+  goToPage(path: string): void {
+    this.router.navigate([path]);
+  }
 }

@@ -1,16 +1,17 @@
 <div class="metrics">
     <div class="metrics__card metrics__card--sales">
-        <h3>Total Sales</h3>
-        <p class="value">{{ totalSales | currency }}</p>
+        <h3>Sales</h3>
+        <div class="value">{{ totalSales | currency }}</div>
+        <div class="metric-label">Total revenue</div>
     </div>
-
     <div class="metrics__card metrics__card--orders">
-        <h3>Total Orders</h3>
-        <p class="value">{{ totalOrders }}</p>
+        <h3>Orders</h3>
+        <div class="value">{{ totalOrders }}</div>
+        <div class="metric-label">Orders placed</div>
     </div>
-
     <div class="metrics__card metrics__card--products">
-        <h3>Total Products</h3>
-        <p class="value">{{ totalProducts }}</p>
+        <h3>Products</h3>
+        <div class="value">{{ totalProducts }}</div>
+        <div class="metric-label">Active products</div>
     </div>
 </div>

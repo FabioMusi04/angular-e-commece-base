@@ -9,14 +9,14 @@
         <form class="" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
             <mat-card class="register-box">
                 <mat-card-content>
-                    <mat-form-field appearance="outline">
+                    <mat-form-field>
                         <mat-label>Name</mat-label>
                         <input matInput type="text" placeholder="Enter your name" formControlName="name" required
                             class="form-field">
                         <mat-error *ngIf="signupForm.get('name')?.hasError('required')">Name is required</mat-error>
                     </mat-form-field>
 
-                    <mat-form-field appearance="outline">
+                    <mat-form-field>
                         <mat-label>Email</mat-label>
                         <input matInput type="email" placeholder="Enter your email" formControlName="email" required
                             class="form-field">
@@ -24,7 +24,7 @@
                         <mat-error *ngIf="signupForm.get('email')?.hasError('email')">Invalid email format</mat-error>
                     </mat-form-field>
 
-                    <mat-form-field appearance="outline">
+                    <mat-form-field>
                         <mat-label>Password</mat-label>
                         <input matInput type="password" placeholder="Enter your password" formControlName="password"
                             required class="form-field">

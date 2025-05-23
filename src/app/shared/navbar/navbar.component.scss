@@ -1,8 +1,32 @@
 mat-toolbar {
     display: flex;
     align-items: center;
-    padding: 0 16px;
+    padding: 50px 16px;
     gap: 16px;
+    background: #0a0f1a; /* Even darker for maximum contrast with page content */
+    box-shadow: 0 6px 12px rgba(10,15,26,0.4);
+    border-radius: 0;
+    color: #fff;
+    height: 70px; /* Taller navbar */
+    position: relative;
+    z-index: 100;
+
+    &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 6px;
+        background: repeating-linear-gradient(
+            45deg,
+            #21a0a0,
+            #21a0a0 10px,
+            #283655 10px,
+            #283655 20px
+        );
+        z-index: -1;
+    }
 
     .spacer {
         flex: 1 1 auto;
@@ -22,8 +46,21 @@ mat-toolbar {
             margin: 0;
 
             input {
-                height: 10px;
-                line-height: 10px;
+                height: 40px;
+                line-height: 40px;
+                background: #222c44;
+                border: 2px solid #0a0f1a;
+                border-radius: 10px;
+                box-shadow: 3px 3px 0 #0a0f1a;
+                font-weight: bold;
+                color: #fff;
+                padding-left: 36px;
+                transition: box-shadow 0.1s;
+                &:focus {
+                    outline: none;
+                    box-shadow: 4px 4px 0 #0a0f1a;
+                    background: #283655;
+                }
             }
 
             ::ng-deep .mat-form-field-wrapper {
@@ -34,16 +71,20 @@ mat-toolbar {
             ::ng-deep .mat-form-field-flex {
                 height: 40px;
                 align-items: center;
+                background: transparent;
             }
 
             ::ng-deep .mat-input-element {
                 padding: 0 8px 0 36px;
                 height: 40px;
                 line-height: 40px;
+                caret-color: #21a0a0;
             }
 
             ::ng-deep .mat-form-field-outline {
-                border-radius: 20px;
+                border-radius: 10px;
+                border: 2px solid #0a0f1a;
+                box-shadow: 3px 3px 0 #0a0f1a;
             }
 
             ::ng-deep .mat-form-field-prefix {
@@ -55,12 +96,68 @@ mat-toolbar {
             ::ng-deep mat-icon {
                 font-size: 20px;
                 vertical-align: middle;
+                color: #0a0f1a;
+                background: #ffb800; /* Yellow for even stronger contrast */
+                border: 2px solid #0a0f1a;
+                border-radius: 50%;
+                box-shadow: 2px 2px 0 #0a0f1a;
+                padding: 2px;
             }
         }
     }
 
     button[mat-button] {
-        font-weight: 500;
-        color: white;
+        font-weight: 800;
+        color: #fff;
+        background: #ff5252; /* Red for maximum contrast */
+        border: 3px solid #0a0f1a;
+        border-radius: 10px;
+        box-shadow: 4px 4px 0 #0a0f1a;
+        text-transform: uppercase;
+        padding: 8px 20px;
+        transition: box-shadow 0.1s, background 0.1s, transform 0.1s;
+        &:hover {
+            background: #ff7575;
+            box-shadow: 2px 2px 0 #0a0f1a;
+            transform: translateY(2px) translateX(2px);
+        }
     }
+
+    /* Brand logo with strong contrast */
+    .brand-logo {
+        font-size: 1.6rem;
+        font-weight: 900;
+        color: #fff;
+        text-shadow: 3px 3px 0 #21a0a0, 5px 5px 0 #0a0f1a;
+        letter-spacing: -0.5px;
+        background: #283655;
+        padding: 6px 16px;
+        border: 3px solid #0a0f1a;
+        border-radius: 12px;
+        box-shadow: 4px 4px 0 #0a0f1a;
+        transform: rotate(-2deg);
+    }
+    
+    /* Secondary buttons */
+    .secondary-btn {
+        background: #21a0a0;
+        &:hover {
+            background: #2cc7c7;
+        }
+    }
+}
+
+/* Add to create spacing between page sections */
+:host ::ng-deep .section-spacer {
+    height: 50px;
+    background: repeating-linear-gradient(
+        -45deg,
+        #1a2238,
+        #1a2238 10px,
+        #222c44 10px,
+        #222c44 20px
+    );
+    margin: 40px 0;
+    border-top: 3px solid #0a0f1a;
+    border-bottom: 3px solid #0a0f1a;
 }
