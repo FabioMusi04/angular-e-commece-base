@@ -6,7 +6,7 @@ import { IOrder } from '../../../interfaces';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductsService {
+export class OrdersService {
   constructor(private http: HttpClient) { }
 
   getOrders(page: number, limit: number): Observable<IOrder[]> {

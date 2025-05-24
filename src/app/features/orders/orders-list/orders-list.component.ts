@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSelectChange } from '@angular/material/select';
 import { MatPaginator } from '@angular/material/paginator';
@@ -7,15 +7,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIcon } from '@angular/material/icon';
+import { Store } from '@ngrx/store';
+import { selectOrderError, selectOrders, selectOrderState } from '../../../state/orders/orders.selector';
+import { Observable, Subscription } from 'rxjs';
+import { IOrder } from '../../../interfaces';
+import { loadOrders } from '../../../state/orders/orders.actions';
 
-interface Order {
-  orderNumber: string;
-  userId: string;
-  totalAmount: number;
-  status: 'pending' | 'completed' | 'cancelled';
-  orderItems: [];
-  createdBy: string;
-}
 
 @Component({
   selector: 'app-orders-list',
@@ -24,41 +21,54 @@ interface Order {
   imports: [MatTableModule, MatSelectModule, MatPaginatorModule, MatToolbarModule, MatIcon],
   standalone: true
 })
-export class OrdersListComponent implements OnInit, AfterViewInit {
+export class OrdersListComponent implements OnInit, AfterViewInit, OnDestroy {
   displayedColumns: string[] = ['orderNumber', 'userId', 'totalAmount', 'status'];
-  dataSource = new MatTableDataSource<Order>([]);
+  dataSource = new MatTableDataSource<IOrder>([]);
+  orders$: Observable<IOrder[]>;
+  loading$ = this.store.select(selectOrderState);
+  error$ = this.store.select(selectOrderError);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  private ordersSubscription!: Subscription;
 
-  orders: Order[] = [
-    { orderNumber: 'ORD12345', userId: 'User1', totalAmount: 120, status: 'pending', orderItems: [], createdBy: 'Admin1' },
-    { orderNumber: 'ORD67890', userId: 'User2', totalAmount: 75, status: 'completed', orderItems: [], createdBy: 'Admin2' },
-    { orderNumber: 'ORD11111', userId: 'User3', totalAmount: 90, status: 'pending', orderItems: [], createdBy: 'Admin3' },
-    { orderNumber: 'ORD22222', userId: 'User4', totalAmount: 150, status: 'cancelled', orderItems: [], createdBy: 'Admin4' },
-    { orderNumber: 'ORD33333', userId: 'User5', totalAmount: 200, status: 'completed', orderItems: [], createdBy: 'Admin5' },
-    { orderNumber: 'ORD44444', userId: 'User6', totalAmount: 300, status: 'pending', orderItems: [], createdBy: 'Admin6' },
-    { orderNumber: 'ORD55555', userId: 'User7', totalAmount: 80, status: 'cancelled', orderItems: [], createdBy: 'Admin7' },
-    { orderNumber: 'ORD66666', userId: 'User8', totalAmount: 110, status: 'completed', orderItems: [], createdBy: 'Admin8' }
-  ];
+  constructor(private store: Store) {
+    this.orders$ = this.store.select(selectOrders);
+  }
 
   statusFilter = '';
 
   ngOnInit() {
-    this.dataSource.data = this.orders;
+    this.ordersSubscription = this.orders$.subscribe(orders => {
+      this.dataSource.data = orders;
+      this.applyFilter();
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.ordersSubscription) {
+      this.ordersSubscription.unsubscribe();
+    }
   }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator; // ✅ This enables pagination
+
+
+    this.store.dispatch(loadOrders({ page: this.paginator.pageIndex + 1, limit: this.paginator.pageSize }));
+
+    this.paginator.page.subscribe(() => {
+      this.store.dispatch(loadOrders({ page: this.paginator.pageIndex + 1, limit: this.paginator.pageSize }));
+    });
   }
 
   applyFilter() {
-    this.dataSource.filterPredicate = (data: Order, filter: string) => 
+    this.dataSource.filterPredicate = (data: IOrder, filter: string) =>
       !filter || data.status === filter;
-    
+
     this.dataSource.filter = this.statusFilter;
   }
 
-  updateStatus(order: Order, event: MatSelectChange) {
+  updateStatus(order: IOrder, event: MatSelectChange) {
     order.status = event.value;
   }
 }
