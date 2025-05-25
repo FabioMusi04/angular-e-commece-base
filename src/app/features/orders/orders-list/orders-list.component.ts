@@ -10,8 +10,9 @@ import { MatIcon } from '@angular/material/icon';
 import { Store } from '@ngrx/store';
 import { selectOrderError, selectOrders, selectOrderState } from '../../../state/orders/orders.selector';
 import { Observable, Subscription } from 'rxjs';
-import { IOrder } from '../../../interfaces';
 import { loadOrders } from '../../../state/orders/orders.actions';
+import { Router } from '@angular/router';
+import { IOrder } from '../orders.model';
 
 
 @Component({
@@ -22,7 +23,7 @@ import { loadOrders } from '../../../state/orders/orders.actions';
   standalone: true
 })
 export class OrdersListComponent implements OnInit, AfterViewInit, OnDestroy {
-  displayedColumns: string[] = ['orderNumber', 'userId', 'totalAmount', 'status'];
+  displayedColumns: string[] = ['orderNumber', 'userId', 'totalAmount', 'status', 'actions'];
   dataSource = new MatTableDataSource<IOrder>([]);
   orders$: Observable<IOrder[]>;
   loading$ = this.store.select(selectOrderState);
@@ -31,7 +32,7 @@ export class OrdersListComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   private ordersSubscription!: Subscription;
 
-  constructor(private store: Store) {
+  constructor(private store: Store, private router: Router) {
     this.orders$ = this.store.select(selectOrders);
   }
 
@@ -70,5 +71,13 @@ export class OrdersListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   updateStatus(order: IOrder, event: MatSelectChange) {
     order.status = event.value;
+  }
+
+  onOrderClick(order: IOrder): void {
+    this.router.navigate(['/orders', order.id]);
+  }
+
+  onButtonClick(): void {
+    this.router.navigate(['/orders/create']);
   }
 }

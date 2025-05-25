@@ -8,7 +8,7 @@ export const selectOrders = createSelector(
   (state: IOrderState) => state.orders
 )
 
-export const selectProduct = createSelector(
+export const selectOrder = createSelector(
   selectOrderState,
   (state: IOrderState) => state.order
 );

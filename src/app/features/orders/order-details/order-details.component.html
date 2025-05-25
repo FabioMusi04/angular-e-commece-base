@@ -1,0 +1,71 @@
+<div class="order-details-container">
+
+  <div class="action-bar">
+    <button mat-button (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+      Go Back
+    </button>
+    <button mat-raised-button color="primary" (click)="onButtonClick()">
+      <mat-icon>edit</mat-icon>
+      Modify Order
+    </button>
+  </div>
+
+  <mat-card class="order-details" *ngIf="!update">
+    <mat-card-header>
+      <mat-card-title>Order #{{ order?.orderNumber }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="order-attribute brutalist-attribute"><strong>Order Number:</strong></div>
+      <div class="order-attribute-value brutalist-value">{{ order?.orderNumber }}</div>
+      <div class="order-attribute brutalist-attribute"><strong>User ID:</strong></div>
+      <div class="order-attribute-value brutalist-value">{{ order?.userId }}</div>
+      <div class="order-attribute brutalist-attribute"><strong>Total Amount:</strong></div>
+      <div class="order-attribute-value brutalist-value">{{ order?.totalAmount | currency }}</div>
+      <div class="order-attribute brutalist-attribute"><strong>Status:</strong></div>
+      <div class="order-attribute-value brutalist-value">{{ order?.status }}</div>
+      <div class="order-attribute brutalist-attribute"><strong>Order Items:</strong></div>
+      <div class="order-attribute-value brutalist-value">
+        <pre>{{ order?.orderItems | json }}</pre>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card *ngIf="update" class="update-form-card">
+    <div class="custom-update-title">Update Order</div>
+    <mat-card-content>
+      <form [formGroup]="orderForm" (ngSubmit)="onSubmit()" class="update-form">
+        <div class="custom-form-group full-width">
+          <label for="orderNumber">Order Number</label>
+          <input id="orderNumber" type="text" formControlName="orderNumber" placeholder="Order Number" />
+        </div>
+        <div class="custom-form-group full-width">
+          <label for="userId">User ID</label>
+          <input id="userId" type="text" formControlName="userId" placeholder="User ID" />
+        </div>
+        <div class="custom-form-group full-width">
+          <label for="totalAmount">Total Amount</label>
+          <input id="totalAmount" type="number" formControlName="totalAmount" placeholder="Total Amount" />
+        </div>
+        <div class="custom-form-group full-width">
+          <label for="status">Status</label>
+          <select id="status" formControlName="status">
+            <option value="pending">Pending</option>
+            <option value="completed">Completed</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+        </div>
+        <div class="custom-form-group full-width">
+          <label for="orderItems">Order Items (JSON)</label>
+          <textarea id="orderItems" formControlName="orderItems" placeholder="Order Items as JSON"></textarea>
+        </div>
+        <div class="form-actions">
+          <button mat-raised-button color="primary" type="submit" [disabled]="orderForm.invalid">
+            Submit
+          </button>
+          <button mat-button type="button" (click)="update = false">Cancel</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
