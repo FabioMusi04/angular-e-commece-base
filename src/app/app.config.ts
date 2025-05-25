@@ -20,6 +20,9 @@ import { CategoriesEffects } from './state/categories/categories.effects';
 import { ordersReducer } from './state/orders/orders.reducer';
 import { OrdersEffects } from './state/orders/orders.effects';
 
+import { usersReducer } from './state/users/users.reducer';
+import { UsersEffects } from './state/users/users.effects';
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
@@ -31,13 +34,15 @@ export const appConfig: ApplicationConfig = {
     provideStore({
       products: productsReducer,
       categories: categoriesReducer,
-      orders: ordersReducer
+      orders: ordersReducer,
+      users: usersReducer
     }),
     provideEffects(
       [
         ProductsEffects,
         CategoriesEffects,
-        OrdersEffects
+        OrdersEffects,
+        UsersEffects
       ]
     ),
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
