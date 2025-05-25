@@ -362,3 +362,26 @@
     color: #ffffff !important;
   }
 }
+
+.neo-btn {
+  font-weight: 800 !important;
+  border-radius: 12px !important;
+  border: 3px solid rgba(196, 161, 255, 0.3) !important;
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2) !important;
+  background: #c4a1ff !important; /* Lavender accent */
+  color: #1a2238 !important;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 8px 24px !important;
+  transition: transform 0.12s, box-shadow 0.12s;
+  
+  &:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.15) !important;
+    background: #d4b7ff !important;
+  }
+  
+  .mat-icon {
+    margin-right: 8px;
+  }
+}

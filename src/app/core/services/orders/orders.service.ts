@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IOrder } from '../../../interfaces';
+import { IOrder } from '../../../features/orders/orders.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductsService {
+export class OrdersService {
   constructor(private http: HttpClient) { }
 
   getOrders(page: number, limit: number): Observable<IOrder[]> {
