@@ -40,3 +40,8 @@ export const updateOrder = createAction(
   '[Orders] Update Order',
   props<{ id: string; order: IOrder }>(),
 );
+
+export const deleteOrder = createAction(
+  '[Orders] Delete Order',
+  props<{ id: string, page: number, limit: number }>(),
+);

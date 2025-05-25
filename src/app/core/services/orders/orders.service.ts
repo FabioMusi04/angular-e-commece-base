@@ -28,4 +28,8 @@ export class OrdersService {
   updateOrder(id: string, order: IOrder): Observable<IOrder> {
     return this.http.put<IOrder>(`/orders/${id}`, order)
   }
+
+  deleteOrder(id: string): Observable<void> {
+    return this.http.delete<void>(`/orders/${id}`);
+  }
 }
