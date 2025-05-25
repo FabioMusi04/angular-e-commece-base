@@ -40,3 +40,8 @@ export const updateProduct = createAction(
     '[Products] Update Product',
     props<{ id: string; product: IProduct }>(),
 );
+
+export const deleteProduct = createAction(
+    '[Products] Delete Product',
+    props<{ id: string; page: number; limit: number }>()
+);

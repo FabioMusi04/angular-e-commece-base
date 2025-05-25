@@ -17,6 +17,9 @@ import { ProductsEffects } from './state/products/products.effects';
 import { categoriesReducer } from './state/categories/categories.reducer';
 import { CategoriesEffects } from './state/categories/categories.effects';
 
+import { ordersReducer } from './state/orders/orders.reducer';
+import { OrdersEffects } from './state/orders/orders.effects';
+
 import { usersReducer } from './state/users/users.reducer';
 import { UsersEffects } from './state/users/users.effects';
 
@@ -31,12 +34,14 @@ export const appConfig: ApplicationConfig = {
     provideStore({
       products: productsReducer,
       categories: categoriesReducer,
+      orders: ordersReducer,
       users: usersReducer
     }),
     provideEffects(
       [
         ProductsEffects,
         CategoriesEffects,
+        OrdersEffects,
         UsersEffects
       ]
     ),

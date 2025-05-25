@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { OrdersListComponent } from './orders-list/orders-list.component'; // Make sure you have an OrdersComponent
-import { OrdersViewComponent } from './orders-view/orders-view.component';
+import { OrdersListComponent } from './orders-list/orders-list.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
+import { OrderCreateComponent } from './order-create/order-create.component';
 
 const routes: Routes = [
   { path: '', component: OrdersListComponent },
-  { path: ':id', component: OrdersViewComponent }
+  { path: 'create', component: OrderCreateComponent },
+  { path: ':id', component: OrderDetailsComponent }
 ];
 
 @NgModule({
