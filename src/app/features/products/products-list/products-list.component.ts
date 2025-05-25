@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ViewChild, OnInit, OnDestroy } from '@angular
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Store } from '@ngrx/store';
-import { loadProducts } from '../../../state/products/products.actions';
+import { deleteProduct, loadProducts } from '../../../state/products/products.actions';
 import { IProduct } from '../products.model';
 import { selectProductError, selectProductLoading, selectProducts } from '../../../state/products/products.selectors';
 import { Observable, Subscription } from 'rxjs';
@@ -34,7 +34,7 @@ interface ICategory {
   styleUrl: './products-list.component.scss'
 })
 export class ProductsListComponent implements AfterViewInit, OnInit, OnDestroy {
-  displayedColumns: string[] = ['imageUrl', 'name', 'categoryName', 'stock', 'price'];
+  displayedColumns: string[] = ['imageUrl', 'name', 'categoryName', 'stock', 'price', 'actions'];
   dataSource = new MatTableDataSource<IProduct>();
   products$: Observable<IProduct[]>;
   loading$ = this.store.select(selectProductLoading);
@@ -81,6 +81,11 @@ export class ProductsListComponent implements AfterViewInit, OnInit, OnDestroy {
   onProductClick(product: IProduct) {
     this.router.navigate(['/products', product.id]);
   }
+
+  onDeleteProduct(product: IProduct) {
+    this.store.dispatch(deleteProduct({ id: product.id, page: this.paginator.pageIndex + 1, limit: this.paginator.pageSize }));
+  }
+
 
   applyCategoryFilter() {
     if (!this.categoryFilter) {

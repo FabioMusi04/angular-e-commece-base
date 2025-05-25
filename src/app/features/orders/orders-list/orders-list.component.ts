@@ -10,7 +10,7 @@ import { MatIcon } from '@angular/material/icon';
 import { Store } from '@ngrx/store';
 import { selectOrderError, selectOrders, selectOrderState } from '../../../state/orders/orders.selector';
 import { Observable, Subscription } from 'rxjs';
-import { loadOrders } from '../../../state/orders/orders.actions';
+import { deleteOrder, loadOrders } from '../../../state/orders/orders.actions';
 import { Router } from '@angular/router';
 import { IOrder } from '../orders.model';
 
@@ -79,5 +79,9 @@ export class OrdersListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   onButtonClick(): void {
     this.router.navigate(['/orders/create']);
+  }
+
+  onDeleteOrder(order: IOrder): void {
+    this.store.dispatch(deleteOrder({ id: order.id, page: this.paginator.pageIndex + 1, limit: this.paginator.pageSize }));
   }
 }
