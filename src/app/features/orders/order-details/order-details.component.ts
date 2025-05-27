@@ -11,7 +11,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { ICategory, IOrder } from '../orders.model';
 import { selectCategories } from '../../../state/categories/categories.selector';
-import { loadCategories } from '../../../state/categories/categories.actions';
+import { loadCategories, loadCategoriesWithoutPagination } from '../../../state/categories/categories.actions';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { loadOrder, updateOrder } from '../../../state/orders/orders.actions';
@@ -57,7 +57,7 @@ export class OrderDetailsComponent implements OnInit {
       if (id) {
         this.store.dispatch(loadOrder({ id }));
         this.categories$.subscribe();
-        this.store.dispatch(loadCategories());
+        this.store.dispatch(loadCategoriesWithoutPagination());
     }
   }
 

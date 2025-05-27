@@ -3,7 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { Store } from '@ngrx/store';
-import { loadCategories } from '../../../state/categories/categories.actions';
+import { loadCategories, loadCategoriesWithoutPagination } from '../../../state/categories/categories.actions';
 import { Observable } from 'rxjs';
 import { selectCategories } from '../../../state/categories/categories.selector';
 import { CommonModule } from '@angular/common';
@@ -39,7 +39,7 @@ export class OrderCreateComponent implements OnInit {
 
   ngOnInit() {
     this.categories$.subscribe();
-    this.store.dispatch(loadCategories());
+    this.store.dispatch(loadCategoriesWithoutPagination());
   }
 
   onSubmit() {

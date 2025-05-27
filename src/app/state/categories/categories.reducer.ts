@@ -15,19 +15,26 @@ export const initialState: ICategoryState = {
 }
 
 export const categoriesReducer = createReducer(
-    initialState,
-    on(CategoriesAction.loadCategories, (state) => ({
-      ...state,
-      loading: true,
-    })),
-    on(CategoriesAction.loadCategoriesSuccess, (state, { categories })=> ({
-      ...state,
-      loading: false,
-      categories
-    })),
-    on(CategoriesAction.loadCategoriesFailure, (state, { error }) => ({
-      ...state,
-      loading: false,
-      error
-    }))
+  initialState,
+  on(CategoriesAction.loadCategoriesWithoutPagination, (state) => ({
+    ...state,
+    loading: true,
+    error: null,
+  })),
+  on(CategoriesAction.loadCategories, (state) => ({
+    ...state,
+    loading: true,
+    error: null,
+  })),
+  on(CategoriesAction.loadCategoriesSuccess, (state, { categories }) => ({
+    ...state,
+    loading: false,
+    categories,
+    error: null,
+  })),
+  on(CategoriesAction.loadCategoriesFailure, (state, { error }) => ({
+    ...state,
+    loading: false,
+    error,
+  })),
 )

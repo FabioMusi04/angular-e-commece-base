@@ -13,13 +13,13 @@ import { Observable, Subscription } from 'rxjs';
 import { deleteOrder, loadOrders } from '../../../state/orders/orders.actions';
 import { Router } from '@angular/router';
 import { IOrder } from '../orders.model';
-
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-orders-list',
   templateUrl: './orders-list.component.html',
   styleUrls: ['./orders-list.component.scss'],
-  imports: [MatTableModule, MatSelectModule, MatPaginatorModule, MatToolbarModule, MatIcon],
+  imports: [CommonModule, MatTableModule, MatSelectModule, MatPaginatorModule, MatToolbarModule, MatIcon],
   standalone: true
 })
 export class OrdersListComponent implements OnInit, AfterViewInit, OnDestroy {
@@ -52,8 +52,7 @@ export class OrdersListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator; // ✅ This enables pagination
-
+    this.dataSource.paginator = this.paginator;
 
     this.store.dispatch(loadOrders({ page: this.paginator.pageIndex + 1, limit: this.paginator.pageSize }));
 

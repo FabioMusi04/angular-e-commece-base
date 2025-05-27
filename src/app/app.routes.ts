@@ -10,14 +10,6 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'orders',
-    canMatch: [canMatchAuthGuard],
-    loadChildren: () =>
-      import('./features/orders/orders.module').then(
-        (m) => m.OrdersRoutingModule
-      ),
-  },
-  {
     path: 'checkout',
     canMatch: [canMatchAuthGuard],
     loadChildren: () =>
@@ -37,11 +29,27 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./features/analytics/analytics.module').then((m) => m.AnalyticsModule),
   },
-    {
-        path: 'products',
-        canMatch: [canMatchAuthGuard],
-        loadChildren: () => import('./features/products/products.module').then(m => m.ProductsRoutingModule)
-    },
+  {
+    path: 'products',
+    canMatch: [canMatchAuthGuard],
+    loadChildren: () => import('./features/products/products.module').then(m => m.ProductsRoutingModule)
+  },
+  {
+    path: 'orders',
+    canMatch: [canMatchAuthGuard],
+    loadChildren: () =>
+      import('./features/orders/orders.module').then(
+        (m) => m.OrdersRoutingModule
+      ),
+  },
+  {
+    path: 'categories',
+    canMatch: [canMatchAuthGuard],
+    loadChildren: () =>
+      import('./features/categories/categories.module').then(
+        (m) => m.CategoriesRoutingModule
+      ),
+  },
   {
     path: 'login',
     loadChildren: () =>
