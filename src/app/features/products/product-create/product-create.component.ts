@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
@@ -11,6 +11,8 @@ import { CommonModule } from '@angular/common';
 import { createProduct } from '../../../state/products/products.actions';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
+import { AlertComponent } from '../../../shared/alert/alert.component';
 
 @Component({
   selector: 'app-product-create',
@@ -20,7 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './product-create.component.scss'
 })
 export class ProductCreateComponent implements OnInit {
-
+  dialog = inject(MatDialog);
   productForm = this.fb.group({
     name: ['', Validators.required],
     description: ['', Validators.required],
@@ -31,6 +33,8 @@ export class ProductCreateComponent implements OnInit {
   })
 
   categories$: Observable<ICategory[]>;
+  error$: Observable<unknown | null> = this.store.select(selectCategories);
+  error: unknown | null = null;
 
   constructor(private fb: FormBuilder, private store: Store) {
     this.categories$ = this.store.select(selectCategories);
@@ -39,6 +43,10 @@ export class ProductCreateComponent implements OnInit {
   ngOnInit() {
     this.categories$.subscribe();
     this.store.dispatch(loadCategoriesWithoutPagination());
+    this.error$.subscribe((error) => {
+      this.error = error;
+    });
+
   }
 
   onSubmit() {
@@ -46,6 +54,10 @@ export class ProductCreateComponent implements OnInit {
       const product = this.productForm.value as IProduct;
 
       this.store.dispatch(createProduct({ product }));
+        this.productForm.reset();
+        this.showAlert('Success', 'Product created successfully!', 'success');
+        this.goBack();
+
 
     }
   }
@@ -54,4 +66,19 @@ export class ProductCreateComponent implements OnInit {
     window.history.back();
   }
 
+  showAlert(
+    title: string,
+    message: string,
+    status: 'warn' | 'error' | 'info' | 'success'
+  ): void {
+    this.dialog.open(AlertComponent, {
+      data: {
+        title,
+        message,
+        status,
+        buttons: 'ok',
+        autoClose: true,
+      },
+    });
+  }
 }

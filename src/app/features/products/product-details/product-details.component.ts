@@ -1,8 +1,8 @@
 import { OnInit } from '@angular/core';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { selectProduct } from '../../../state/products/products.selectors';
+import { selectProduct, selectProductError } from '../../../state/products/products.selectors';
 import { loadProduct, updateProduct } from '../../../state/products/products.actions';
 import { ActivatedRoute } from '@angular/router';
 import { MatButton, MatButtonModule } from '@angular/material/button';
@@ -16,6 +16,8 @@ import { selectCategories } from '../../../state/categories/categories.selector'
 import { loadCategories, loadCategoriesWithoutPagination } from '../../../state/categories/categories.actions';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
+import { MatDialog } from '@angular/material/dialog';
+import { AlertComponent } from '../../../shared/alert/alert.component';
 
 @Component({
   selector: 'app-product-details',
@@ -25,7 +27,7 @@ import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
   styleUrl: './product-details.component.scss'
 })
 export class ProductDetailsComponent implements OnInit {
-
+  dialog = inject(MatDialog);
 
   productForm = this.fb.group({
     name: ['', Validators.required],
@@ -39,7 +41,9 @@ export class ProductDetailsComponent implements OnInit {
 
   update = false;
   product$: Observable<IProduct | null>;
+  error$: Observable<unknown | null> = this.store.select(selectProductError);
   product: IProduct | null = null;
+  error: unknown | null = null;
   categories$: Observable<ICategory[]>;
 
   constructor(private store: Store, private route: ActivatedRoute, private fb: FormBuilder) {
@@ -58,6 +62,10 @@ export class ProductDetailsComponent implements OnInit {
           price: product?.price || 0,
           imageUrl: product?.imageUrl  || '',
         });
+
+      this.error$.subscribe((error) => {
+        this.error = error;
+      });
     });
       const id = this.route.snapshot.paramMap.get('id');
       if (id) {
@@ -78,6 +86,12 @@ export class ProductDetailsComponent implements OnInit {
       const id = this.route.snapshot.paramMap.get('id');
       if (id) {
         this.store.dispatch(updateProduct({ id, product }));
+        if (this.error == null) {
+          this.update = false;
+          this.showAlert('Success', 'Product updated successfully!', 'success');
+        }else {
+          this.showAlert('Error', 'Failed to update product. Please try again.', 'error');
+        }
       }
 
     }
@@ -86,4 +100,21 @@ export class ProductDetailsComponent implements OnInit {
   goBack() {
     window.history.back();
   }
+
+  showAlert(
+    title: string,
+    message: string,
+    status: 'warn' | 'error' | 'info' | 'success'
+  ): void {
+    this.dialog.open(AlertComponent, {
+      data: {
+        title,
+        message,
+        status,
+        buttons: 'ok',
+        autoClose: true,
+      },
+    });
+  }
 }
+
