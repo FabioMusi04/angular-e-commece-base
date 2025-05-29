@@ -14,12 +14,13 @@ import { deleteOrder, loadOrders } from '../../../state/orders/orders.actions';
 import { Router } from '@angular/router';
 import { IOrder } from '../orders.model';
 import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-orders-list',
   templateUrl: './orders-list.component.html',
   styleUrls: ['./orders-list.component.scss'],
-  imports: [CommonModule, MatTableModule, MatSelectModule, MatPaginatorModule, MatToolbarModule, MatIcon],
+  imports: [CommonModule, MatTableModule, MatSelectModule, MatPaginatorModule, MatToolbarModule, MatIcon, MatButtonModule],
   standalone: true
 })
 export class OrdersListComponent implements OnInit, AfterViewInit, OnDestroy {
