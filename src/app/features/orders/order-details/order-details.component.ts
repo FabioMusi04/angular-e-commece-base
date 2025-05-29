@@ -1,4 +1,4 @@
-import { OnInit } from '@angular/core';
+import { OnInit, inject } from '@angular/core';
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -11,11 +11,13 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { ICategory, IOrder } from '../orders.model';
 import { selectCategories } from '../../../state/categories/categories.selector';
-import { loadCategories, loadCategoriesWithoutPagination } from '../../../state/categories/categories.actions';
+import { loadCategoriesWithoutPagination } from '../../../state/categories/categories.actions';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { loadOrder, updateOrder } from '../../../state/orders/orders.actions';
 import { selectOrder } from '../../../state/orders/orders.selector';
+import { MatDialog } from '@angular/material/dialog';
+import { AlertComponent } from '../../../shared/alert/alert.component';
 
 @Component({
   selector: 'app-order-details',
@@ -25,6 +27,8 @@ import { selectOrder } from '../../../state/orders/orders.selector';
   styleUrl: './order-details.component.scss'
 })
 export class OrderDetailsComponent implements OnInit {
+  dialog = inject(MatDialog);
+
   orderForm = this.fb.group({
     orderNumber: ['', { nonNullable: true, validators: [Validators.required] }],
     userId: ['', { nonNullable: true, validators: [Validators.required] }],
@@ -80,6 +84,10 @@ export class OrderDetailsComponent implements OnInit {
       const id = this.route.snapshot.paramMap.get('id');
       if (id) {
         this.store.dispatch(updateOrder({ id, order }));
+         this.showAlert('Success', 'Product created successfully!', 'success');
+          setTimeout(() => {
+            this.goBack();
+          }, 1000);
       }
 
     }
@@ -88,4 +96,20 @@ export class OrderDetailsComponent implements OnInit {
   goBack() {
     window.history.back();
   }
+
+  showAlert(
+      title: string,
+      message: string,
+      status: 'warn' | 'error' | 'info' | 'success'
+    ): void {
+      this.dialog.open(AlertComponent, {
+        data: {
+          title,
+          message,
+          status,
+          buttons: 'ok',
+          autoClose: true,
+        },
+      });
+    }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
@@ -14,7 +14,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { IUser } from '../../../interfaces';
 import { selectUsers } from '../../../state/users/users.selectors';
 import { loadUsers } from '../../../state/users/users.actions';
-
+import { MatDialog } from '@angular/material/dialog';
+import { AlertComponent } from '../../../shared/alert/alert.component';
 @Component({
   selector: 'app-order-create',
   standalone: true,
@@ -23,6 +24,7 @@ import { loadUsers } from '../../../state/users/users.actions';
   styleUrl: './order-create.component.scss'
 })
 export class OrderCreateComponent implements OnInit {
+  dialog = inject(MatDialog);
 
   orderForm = this.fb.group({
     orderNumber: ['', Validators.required],
@@ -53,18 +55,36 @@ export class OrderCreateComponent implements OnInit {
         totalAmount: formValue.totalAmount ?? 0,
         status: (formValue.status as 'pending' | 'completed' | 'cancelled') ?? 'pending',
         orderItems: formValue.orderItems ?? [],
-        createdBy: '', 
+        createdBy: '',
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
         __v: 0
       };
 
       this.store.dispatch(createOrder({ order }));
+      this.showAlert('Success', 'Order created successfully!', 'success');
+      this.orderForm.reset();
     }
   }
 
   goBack() {
     window.history.back();
   }
+
+  showAlert(
+      title: string,
+      message: string,
+      status: 'warn' | 'error' | 'info' | 'success'
+    ): void {
+      this.dialog.open(AlertComponent, {
+        data: {
+          title,
+          message,
+          status,
+          buttons: 'ok',
+          autoClose: true,
+        },
+      });
+    }
 
 }
