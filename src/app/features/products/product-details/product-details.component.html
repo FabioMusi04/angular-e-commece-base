@@ -1,0 +1,72 @@
+<div class="product-details-container">
+
+  <div class="action-bar">
+    <button mat-button (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+      Go Back
+    </button>
+    <button mat-raised-button color="primary" (click)="onButtonClick()">
+      <mat-icon>edit</mat-icon>
+      Modify Product
+    </button>
+  </div>
+
+  <mat-card class="product-details" *ngIf="!update">
+    <mat-card-header>
+      <mat-card-title>{{ product?.name }}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image [src]="product?.imageUrl" [alt]="product?.name" class="product-image" />
+    <mat-card-content>
+      <div class="product-attribute brutalist-attribute"><strong>Price:</strong></div>
+      <div class="product-attribute-value brutalist-value">{{ product?.price | currency }}</div>
+      <div class="product-attribute brutalist-attribute"><strong>Description:</strong></div>
+      <div class="product-attribute-value brutalist-value">{{ product?.description }}</div>
+      <div class="product-attribute brutalist-attribute"><strong>Category:</strong></div>
+      <div class="product-attribute-value brutalist-value">{{ product?.category?.name }}</div>
+      <div class="product-attribute brutalist-attribute"><strong>Stock:</strong></div>
+      <div class="product-attribute-value brutalist-value">{{ product?.stock }}</div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card *ngIf="update" class="update-form-card">
+    <div class="custom-update-title">Update Product</div>
+    <mat-card-content>
+      <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="update-form">
+        <div class="custom-form-group full-width">
+          <label for="name">Product Name</label>
+          <input id="name" type="text" formControlName="name" placeholder="Product Name" />
+        </div>
+        <div class="custom-form-group full-width">
+          <label for="categoryId">Category</label>
+          <select id="categoryId" formControlName="categoryId">
+            <option *ngFor="let category of categories$ | async" [value]="category.id">
+              {{ category.name }}
+            </option>
+          </select>
+        </div>
+        <div class="custom-form-group full-width">
+          <label for="description">Description</label>
+          <textarea id="description" formControlName="description" placeholder="Description"></textarea>
+        </div>
+        <div class="custom-form-group full-width">
+          <label for="stock">Stock</label>
+          <input id="stock" type="number" formControlName="stock" placeholder="Stock" />
+        </div>
+        <div class="custom-form-group full-width">
+          <label for="price">Price</label>
+          <input id="price" type="number" formControlName="price" placeholder="Price" />
+        </div>
+        <div class="custom-form-group full-width">
+          <label for="imageUrl">Image URL</label>
+          <input id="imageUrl" type="text" formControlName="imageUrl" placeholder="Image URL" />
+        </div>
+        <div class="form-actions">
+          <button mat-raised-button color="primary" type="submit" [disabled]="productForm.invalid">
+            Submit
+          </button>
+          <button mat-button type="button" (click)="update = false">Cancel</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

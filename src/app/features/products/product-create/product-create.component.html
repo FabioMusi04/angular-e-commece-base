@@ -1,0 +1,68 @@
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="product-form">
+  <div class="form-title">
+    <mat-icon>add_shopping_cart</mat-icon>
+    <span>Create Product</span>
+  </div>
+  <div class="form-fields">
+    <mat-form-field>
+      <mat-label>Product Name</mat-label>
+      <mat-icon matPrefix>shopping_bag</mat-icon>
+      <input type="text" matInput formControlName="name" placeholder="Product Name">
+    </mat-form-field>
+
+    <mat-form-field >
+      <mat-label>Category</mat-label>
+      <mat-icon matPrefix>category</mat-icon>
+      <input type="text"
+             [matAutocomplete]="auto"
+             matInput
+             formControlName="categoryId"
+             placeholder="Category">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let category of categories$ | async" [value]="category.id">
+          {{ category.name }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-form-field >
+      <mat-label>Description</mat-label>
+      <mat-icon matPrefix>description</mat-icon>
+      <textarea matInput formControlName="description" placeholder="Description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field >
+      <mat-label>Stock</mat-label>
+      <mat-icon matPrefix>inventory_2</mat-icon>
+      <input type="number" matInput formControlName="stock" placeholder="Stock">
+    </mat-form-field>
+
+    <mat-form-field >
+      <mat-label>Price</mat-label>
+      <mat-icon matPrefix>attach_money</mat-icon>
+      <input type="number" matInput formControlName="price" placeholder="Price">
+    </mat-form-field>
+
+    <mat-form-field >
+      <mat-label>Image URL</mat-label>
+      <mat-icon matPrefix>image</mat-icon>
+      <input type="text" matInput formControlName="imageUrl" placeholder="Image URL">
+    </mat-form-field>
+  </div>
+  <div class="form-actions">
+    <button mat-raised-button color="primary" type="submit" [disabled]="productForm.invalid">
+      <mat-icon>check_circle</mat-icon>
+      <span>Submit</span>
+    </button>
+    <button mat-stroked-button color="primary" type="button" (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+      <span>Go Back</span>
+    </button>
+  </div>
+</form>
+<style>
+  .product-form {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+</style>

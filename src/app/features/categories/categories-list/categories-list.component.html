@@ -1,0 +1,49 @@
+<div class="neo-categories-list">
+  <mat-toolbar class="neo-toolbar">
+    <mat-icon>category</mat-icon>
+    <span>CATEGORIES MANAGEMENT</span>
+    <span class="spacer"></span>
+    <button mat-raised-button class="neo-btn" (click)="onCreateCategory()">
+      <mat-icon>add</mat-icon>
+      ADD CATEGORY
+    </button>
+  </mat-toolbar>
+
+  <table mat-table [dataSource]="dataSource" class="neo-table">
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> NAME </th>
+      <td mat-cell *matCellDef="let category"> {{ category.name }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> DESCRIPTION </th>
+      <td mat-cell *matCellDef="let category"> {{ category.description }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="createdBy">
+      <th mat-header-cell *matHeaderCellDef> CREATED BY </th>
+      <td mat-cell *matCellDef="let category"> {{ category.createdBy }} </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let category">
+        <button mat-icon-button color="warn" (click)="onDeleteCategory(category); $event.stopPropagation()">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator
+    [pageSize]="10"
+    [pageSizeOptions]="[10, 20, 50]"
+    showFirstLastButtons
+    class="neo-paginator"
+    aria-label="Select page of categories">
+  </mat-paginator>
+</div>

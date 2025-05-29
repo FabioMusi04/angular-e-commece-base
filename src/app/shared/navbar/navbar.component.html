@@ -1,0 +1,13 @@
+<mat-toolbar color="primary">
+    <span>My E-Commerce</span>
+    <span class="spacer"></span>
+    <app-search-input (searchSubmitted)="onSearch($event)"></app-search-input>
+    <span class="spacer"></span>
+    <button mat-button (click)="goToPage('/')">Home</button>
+    <button mat-button *ngIf="!this.authService.isLoggedIn()" (click)="goToPage('/login')">Login</button>
+    <button mat-button *ngIf="!this.authService.isLoggedIn()" (click)="goToPage('/signup')">Register</button>
+    <button mat-button *ngIf="this.authService.isLoggedIn()" (click)="logout()">Logout</button>
+    <button mat-icon-button *ngIf="this.authService.isLoggedIn()" (click)="goToPage('/cart')" aria-label="Shopping Cart">
+        <mat-icon>shopping_cart</mat-icon>
+    </button>
+</mat-toolbar>

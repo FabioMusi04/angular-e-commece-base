@@ -1,0 +1,380 @@
+.product-details-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; // Center children horizontally
+  padding: 32px 16px;
+  background: #1a2238;
+  min-height: 86vh;
+}
+
+.action-bar {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 32px;
+
+  button {
+    min-width: 140px;
+    font-size: 1.1rem;
+    font-weight: 900;
+    border: 2.5px solid #000;
+    border-radius: 10px;
+    box-shadow: 3px 3px 0 #000;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: #fff600;
+    color: #1a2238;
+    padding: 0.7rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.15s, color 0.15s;
+    font-family: 'Montserrat', 'Arial Black', Arial, sans-serif;
+    outline: 3px solid #fff;
+    outline-offset: -6px;
+
+    &:hover {
+      background: #7c5fe6;
+      color: #fff;
+      outline: 3px solid #fff600;
+    }
+
+    mat-icon {
+      font-size: 1.5rem;
+      color: #7c5fe6;
+      margin-right: 0.5rem;
+    }
+
+    &:first-child {
+      background: #fff;
+      color: #1a2238;
+      border: 2.5px solid #000;
+
+      &:hover {
+        background: #fff600;
+        color: #1a2238;
+      }
+    }
+  }
+}
+
+.product-details,
+.update-form-card {
+  width: 100%;
+  max-width: 540px;
+  margin-bottom: 32px;
+  margin-left: 0;
+  margin-right: 0;
+  box-shadow: 0 8px 0 #000, 0 0 0 4px #fff600;
+  border-radius: 18px;
+  background: #fff;
+  border: 4px solid #000;
+  padding: 2.2rem 2.2rem 1.5rem 2.2rem;
+  align-self: center;
+}
+
+.product-details {
+  .mat-card-header {
+    padding-bottom: 0;
+  }
+
+  .mat-card-title {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #1a2238;
+    background: #fff600;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    box-shadow: 2px 2px 0 #000;
+    border: 2px solid #000;
+    display: inline-block;
+    margin-bottom: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Montserrat', 'Arial Black', Arial, sans-serif;
+  }
+
+  .product-image {
+    width: 100%;
+    max-height: 320px;
+    object-fit: contain;
+    margin: 16px 0;
+    border-radius: 8px;
+    background: #fff;
+    border: 3px solid #000;
+    box-shadow: 2px 2px 0 #000;
+  }
+
+  mat-card-content {
+    p {
+      margin: 12px 0;
+      font-size: 1.2rem;
+      color: #1a2238;
+      font-weight: 700;
+      background: #fff600;
+      border-radius: 6px;
+      padding: 0.5rem 1rem;
+      box-shadow: 1px 1px 0 #000;
+      border: 2px solid #000;
+      display: inline-block;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-family: 'Montserrat', 'Arial Black', Arial, sans-serif;
+
+      strong {
+        color: #7c5fe6;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+    }
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .product-attribute,
+  .product-attribute-value {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: #1a2238;
+    background: #fff600;
+    border-radius: 6px;
+    padding: 0.3rem 1rem;
+    box-shadow: 1px 1px 0 #000;
+    border: 2px solid #000;
+    display: block;
+    width: fit-content;
+    margin-bottom: 0.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Montserrat', 'Arial Black', Arial, sans-serif;
+  }
+
+  .product-attribute-value {
+    background: #fff;
+    color: #7c5fe6;
+    border: 2px solid #7c5fe6;
+    margin-bottom: 0.7rem;
+  }
+}
+
+.update-form-card {
+  background: #f5f5ff;
+  border: 4px solid #7c5fe6;
+  box-shadow: 0 8px 0 #000, 0 0 0 4px #fff600;
+  border-radius: 18px;
+  padding: 2.2rem 2.2rem 1.5rem 2.2rem;
+  align-self: center;
+
+  .mat-card-title {
+    color: #fff600 !important;
+    background: #7c5fe6 !important;
+    border: 4px solid #000 !important;
+    text-shadow: 2px 2px 0 #000, 0 0 8px #fff600;
+    z-index: 2;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1.2rem;
+    padding: 1rem 1.5rem;
+    font-size: 2.2rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Montserrat', 'Arial Black', Arial, sans-serif;
+    box-shadow: 0 4px 0 #000, 0 0 0 4px #fff600;
+    border-radius: 12px;
+    overflow: visible;
+  }
+
+  .custom-update-title {
+    font-size: 1.5rem;
+    padding: 0.7rem 1rem;
+    margin-bottom: 1.2rem;
+    color: #fff600 !important;
+    background: #7c5fe6 !important;
+    border: 4px solid #000 !important;
+    text-shadow: 2px 2px 0 #000, 0 0 8px #fff600;
+    z-index: 2;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1.2rem;
+    padding: 1rem 1.5rem;
+    font-size: 2.2rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Montserrat', 'Arial Black', Arial, sans-serif;
+    box-shadow: 0 4px 0 #000, 0 0 0 4px #fff600;
+    border-radius: 12px;
+    overflow: visible;
+  }
+
+  .update-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 0.5rem 0;
+    background: transparent;
+    border-radius: 18px;
+    box-shadow: none;
+    border: none;
+
+    .full-width {
+      width: 100%;
+    }
+
+    .custom-form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1.2rem;
+
+      label {
+        font-weight: 900;
+        color: #7c5fe6;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 1.1rem;
+        margin-bottom: 0.3rem;
+        font-family: 'Montserrat', 'Arial Black', Arial, sans-serif;
+      }
+
+      input,
+      textarea,
+      select {
+        background: #fff;
+        border: 3px solid #7c5fe6;
+        border-radius: 10px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #1a2238;
+        padding: 0.7rem 1rem;
+        font-family: 'Montserrat', 'Arial Black', Arial, sans-serif;
+        box-shadow: 2px 2px 0 #000;
+        outline: none;
+        transition: border-color 0.2s, box-shadow 0.2s;
+      }
+
+      input:focus,
+      textarea:focus,
+      select:focus {
+        border-color: #fff600;
+        box-shadow: 0 0 0 3px #fff600;
+      }
+
+      select {
+        background: #fff;
+        border: 4px solid #7c5fe6; // Default to purple
+        border-radius: 10px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #1a2238;
+        padding: 0.7rem 1rem;
+        font-family: 'Montserrat', 'Arial Black', Arial, sans-serif;
+        box-shadow: 2px 2px 0 #000;
+        outline: none;
+        transition: border-color 0.2s, box-shadow 0.2s;
+      }
+
+      select:focus {
+        border-color: #fff600; // Only yellow on focus
+        box-shadow: 0 0 0 3px #fff600;
+      }
+
+      .error {
+        color: #ff1744;
+        font-weight: 900;
+        font-size: 1rem;
+        margin-top: 0.2rem;
+      }
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 18px;
+      margin-top: 18px;
+
+      button[mat-raised-button] {
+        min-width: 140px;
+        background: #7c5fe6 !important;
+        color: #fff !important;
+        border: 2px solid #000;
+        border-radius: 8px;
+        font-weight: 900;
+        font-size: 1.1rem;
+        box-shadow: 2px 2px 0 #000;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: background 0.15s, color 0.15s;
+        font-family: 'Montserrat', 'Arial Black', Arial, sans-serif;
+
+        &:hover {
+          background: #fff600 !important;
+          color: #1a2238 !important;
+        }
+
+        mat-icon {
+          font-size: 1.5rem;
+          color: #fff600;
+          margin-right: 0.5rem;
+        }
+      }
+
+      button[mat-stroked-button],
+      button[mat-button] {
+        min-width: 140px;
+        border: 2px solid #000 !important;
+        color: #1a2238 !important;
+        background: #fff !important;
+        font-weight: 900;
+        font-size: 1.1rem;
+        border-radius: 8px;
+        box-shadow: 2px 2px 0 #000;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: background 0.15s, color 0.15s;
+        font-family: 'Montserrat', 'Arial Black', Arial, sans-serif;
+
+        &:hover {
+          background: #7c5fe6 !important;
+          color: #fff !important;
+        }
+
+        mat-icon {
+          font-size: 1.5rem;
+          color: #7c5fe6;
+          margin-right: 0.5rem;
+        }
+      }
+    }
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .product-details,
+  .update-form-card {
+    max-width: 100%;
+    padding: 0.5rem;
+    border-radius: 10px;
+  }
+
+  .product-details-container {
+    padding: 8px 2px;
+  }
+}

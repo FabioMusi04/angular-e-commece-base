@@ -1,0 +1,60 @@
+<form [formGroup]="orderForm" (ngSubmit)="onSubmit()" class="order-form">
+  <div class="form-title">
+    <mat-icon>add_shopping_cart</mat-icon>
+    <span>Create Order</span>
+  </div>
+  <div class="form-fields">
+    <mat-form-field>
+      <mat-label>Order Number</mat-label>
+      <mat-icon matPrefix>confirmation_number</mat-icon>
+      <input type="text" matInput formControlName="orderNumber" placeholder="Order Number">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>User</mat-label>
+      <mat-icon matPrefix>person</mat-icon>
+      <input type="text"
+         [matAutocomplete]="userAuto"
+         matInput
+         formControlName="userId"
+         placeholder="User">
+      <mat-autocomplete #userAuto="matAutocomplete">
+      <mat-option *ngFor="let user of users$ | async" [value]="user.id">
+        {{ user.name }}
+      </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Total Amount</mat-label>
+      <mat-icon matPrefix>attach_money</mat-icon>
+      <input type="number" matInput formControlName="totalAmount" placeholder="Total Amount">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Status</mat-label>
+      <mat-icon matPrefix>info</mat-icon>
+      <mat-select formControlName="status" placeholder="Status">
+        <mat-option value="pending">Pending</mat-option>
+        <mat-option value="completed">Completed</mat-option>
+        <mat-option value="cancelled">Cancelled</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Order Items (JSON)</mat-label>
+      <mat-icon matPrefix>list</mat-icon>
+      <textarea matInput formControlName="orderItems" placeholder="Order Items"></textarea>
+    </mat-form-field>
+  </div>
+  <div class="form-actions">
+    <button mat-raised-button color="primary" type="submit" [disabled]="orderForm.invalid">
+      <mat-icon>check_circle</mat-icon>
+      <span>Submit</span>
+    </button>
+    <button mat-stroked-button color="primary" type="button" (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+      <span>Go Back</span>
+    </button>
+  </div>
+</form>

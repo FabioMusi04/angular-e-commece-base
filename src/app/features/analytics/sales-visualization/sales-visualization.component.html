@@ -1,0 +1,18 @@
+<div class="chart">
+    <header class="chart__header">
+      <h2>Sales Overview</h2>
+    </header>
+  
+    <div class="chart__container" *ngIf="salesData && salesData.length > 0; else noData">
+      <canvas
+        baseChart
+        [data]="chartData"
+        [type]="chartType"
+        [options]="chartOptions"
+      ></canvas>
+    </div>
+  
+    <ng-template #noData>
+      <p class="chart__no-data">No sales data available to display.</p>
+    </ng-template>
+  </div>

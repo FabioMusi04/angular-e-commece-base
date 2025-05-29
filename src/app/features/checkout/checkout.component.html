@@ -1,0 +1,225 @@
+<div class="neo-checkout" @fadeAnimation>
+    <div class="neo-checkout-header">
+        <mat-icon>payment</mat-icon>
+        <h1>CHECKOUT</h1>
+    </div>
+    
+    <div class="neo-checkout-container">
+        <div class="neo-billing-info" @slideInAnimation>
+            <h2>BILLING INFORMATION</h2>
+            
+            <form (ngSubmit)="submitBillingInfo()" class="neo-form">
+                <div class="form-section">
+                    <h3>PERSONAL DETAILS</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input 
+                                id="fullName" 
+                                type="text" 
+                                [(ngModel)]="billing.fullName" 
+                                name="fullName" 
+                                required 
+                                #fullName="ngModel"
+                                [class.error]="fullName.invalid && (fullName.dirty || fullName.touched)"
+                            />
+                            <div class="error-message" *ngIf="fullName.invalid && (fullName.dirty || fullName.touched)">
+                                Name is required
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input 
+                                id="email" 
+                                type="email" 
+                                [(ngModel)]="billing.email" 
+                                name="email" 
+                                required 
+                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                #email="ngModel"
+                                [class.error]="email.invalid && (email.dirty || email.touched)"
+                            />
+                            <div class="error-message" *ngIf="email.invalid && (email.dirty || email.touched)">
+                                <span *ngIf="email.errors?.['required']">Email is required</span>
+                                <span *ngIf="email.errors?.['pattern']">Please enter a valid email</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3>SHIPPING ADDRESS</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input 
+                                id="address" 
+                                type="text" 
+                                [(ngModel)]="billing.address" 
+                                name="address" 
+                                required 
+                                #address="ngModel"
+                                [class.error]="address.invalid && (address.dirty || address.touched)"
+                            />
+                            <div class="error-message" *ngIf="address.invalid && (address.dirty || address.touched)">
+                                Address is required
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input 
+                                id="city" 
+                                type="text" 
+                                [(ngModel)]="billing.city" 
+                                name="city" 
+                                required 
+                                #city="ngModel"
+                                [class.error]="city.invalid && (city.dirty || city.touched)"
+                            />
+                            <div class="error-message" *ngIf="city.invalid && (city.dirty || city.touched)">
+                                City is required
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="zip">ZIP Code</label>
+                            <input 
+                                id="zip" 
+                                type="text" 
+                                [(ngModel)]="billing.zip" 
+                                name="zip" 
+                                required 
+                                pattern="[0-9]{5}(-[0-9]{4})?"
+                                #zip="ngModel"
+                                [class.error]="zip.invalid && (zip.dirty || zip.touched)"
+                            />
+                            <div class="error-message" *ngIf="zip.invalid && (zip.dirty || zip.touched)">
+                                <span *ngIf="zip.errors?.['required']">ZIP code is required</span>
+                                <span *ngIf="zip.errors?.['pattern']">Please enter a valid ZIP code</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3>PAYMENT DETAILS</h3>
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="cardNumber">Card Number</label>
+                            <input 
+                                id="cardNumber" 
+                                type="text" 
+                                maxlength="16" 
+                                [(ngModel)]="billing.cardNumber" 
+                                name="cardNumber" 
+                                required 
+                                pattern="[0-9]{16}"
+                                #cardNumber="ngModel"
+                                [class.error]="cardNumber.invalid && (cardNumber.dirty || cardNumber.touched)"
+                            />
+                            <div class="error-message" *ngIf="cardNumber.invalid && (cardNumber.dirty || cardNumber.touched)">
+                                <span *ngIf="cardNumber.errors?.['required']">Card number is required</span>
+                                <span *ngIf="cardNumber.errors?.['pattern']">Please enter a valid 16-digit card number</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expiration">Expiration Date</label>
+                            <input 
+                                id="expiration" 
+                                type="text" 
+                                placeholder="MM/YY" 
+                                [(ngModel)]="billing.expiration" 
+                                name="expiration" 
+                                required 
+                                pattern="(0[1-9]|1[0-2])\/[0-9]{2}"
+                                #expiration="ngModel"
+                                [class.error]="expiration.invalid && (expiration.dirty || expiration.touched)"
+                            />
+                            <div class="error-message" *ngIf="expiration.invalid && (expiration.dirty || expiration.touched)">
+                                <span *ngIf="expiration.errors?.['required']">Expiration date is required</span>
+                                <span *ngIf="expiration.errors?.['pattern']">Please enter a valid date (MM/YY)</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input 
+                                id="cvv" 
+                                type="password" 
+                                maxlength="4" 
+                                [(ngModel)]="billing.cvv" 
+                                name="cvv" 
+                                required 
+                                pattern="[0-9]{3,4}"
+                                #cvv="ngModel"
+                                [class.error]="cvv.invalid && (cvv.dirty || cvv.touched)"
+                            />
+                            <div class="error-message" *ngIf="cvv.invalid && (cvv.dirty || cvv.touched)">
+                                <span *ngIf="cvv.errors?.['required']">CVV is required</span>
+                                <span *ngIf="cvv.errors?.['pattern']">Please enter a valid CVV</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="neo-btn secondary" routerLink="/cart">
+                        <mat-icon>arrow_back</mat-icon>
+                        <span>BACK TO CART</span>
+                    </button>
+                    <button 
+                        type="submit" 
+                        class="neo-btn primary"
+                        [disabled]="fullName.invalid || email.invalid || address.invalid || city.invalid || zip.invalid || cardNumber.invalid || expiration.invalid || cvv.invalid"
+                    >
+                        <mat-icon>check_circle</mat-icon>
+                        <span>COMPLETE ORDER</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        <div class="neo-order-summary" @slideInAnimation>
+            <h2>ORDER SUMMARY</h2>
+            
+            <div class="order-items">
+                <div class="order-item" *ngFor="let item of orderItems">
+                    <div class="item-info">
+                        <span class="item-name">{{ item.name }}</span>
+                        <span class="item-quantity">x {{ item.quantity }}</span>
+                    </div>
+                    <span class="item-price">{{ item.price * item.quantity | currency }}</span>
+                </div>
+            </div>
+            
+            <div class="summary-totals">
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span>{{ getSubtotal() | currency }}</span>
+                </div>
+                
+                <div class="summary-row">
+                    <span>Shipping</span>
+                    <span>{{ getShippingCost() | currency }}</span>
+                </div>
+                
+                <div class="summary-row">
+                    <span>Tax</span>
+                    <span>{{ getTaxAmount() | currency }}</span>
+                </div>
+                
+                <div class="summary-row total">
+                    <span>Total</span>
+                    <span>{{ getTotal() | currency }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

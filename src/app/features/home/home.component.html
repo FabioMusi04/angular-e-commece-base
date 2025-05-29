@@ -1,0 +1,33 @@
+<app-header-categories></app-header-categories>
+<div class="neo-home">
+  <section class="neo-hero">
+    <h1 class="neo-title">🛍️ E-Commerce Admin Dashboard</h1>
+    <p class="neo-subtitle">
+    Gestisci prodotti, ordini e analizza le vendite
+    </p>
+    <div class="neo-actions">
+    <button mat-raised-button color="primary" class="neo-btn" (click)="goToPage('/products')">Vai ai Prodotti</button>
+    <button mat-stroked-button color="accent" class="neo-btn" (click)="goToPage('/orders')">Visualizza Ordini</button>
+    <button mat-stroked-button color="warn" class="neo-btn" (click)="goToPage('/categories')">Gestisci Categorie</button>
+    </div>
+  </section>
+
+  <section class="neo-cards">
+    <div class="neo-card" tabindex="0" (click)="goToPage('/products')" (keyup.enter)="goToPage('/products')" (keyup.space)="goToPage('/products')">
+    <h2>📦 Prodotti</h2>
+    <p>Gestisci il catalogo, aggiungi o modifica prodotti e categorie.</p>
+    </div>
+    <div class="neo-card" tabindex="0" (click)="goToPage('/orders')" (keyup.enter)="goToPage('/orders')" (keyup.space)="goToPage('/orders')">
+    <h2>🧾 Ordini</h2>
+    <p>Monitora, processa e aggiorna lo stato degli ordini in tempo reale.</p>
+    </div>
+    <div class="neo-card" tabindex="0" (click)="goToPage('/analytics')" (keyup.enter)="goToPage('/analytics')" (keyup.space)="goToPage('/analytics')">
+    <h2>📊 Analytics</h2>
+    <p>Visualizza metriche di vendita e performance tramite grafici interattivi.</p>
+    </div>
+    <div class="neo-card" tabindex="0" (click)="goToPage('/categories')" (keyup.enter)="goToPage('/categories')" (keyup.space)="goToPage('/categories')">
+    <h2>🏷️ Categorie</h2>
+    <p>Gestisci le categorie dei prodotti per una migliore organizzazione.</p>
+    </div>
+  </section>
+</div>

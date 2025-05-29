@@ -1,0 +1,229 @@
+.neo-cart-container {
+  background: linear-gradient(135deg, #1a2238 70%, #283655 100%);
+  min-height: 100vh;
+  padding: 56px 20px 80px 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 36px;
+  justify-content: center;
+  align-items: flex-start;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.neo-cart-details, .neo-order-summary {
+  background: #222c44;
+  border: 4px solid #0a0f1a;
+  border-radius: 28px;
+  box-shadow: 8px 8px 0 #0a0f1a;
+  padding: 28px;
+  transition: transform 0.13s, box-shadow 0.13s, background 0.13s;
+}
+
+.neo-cart-details {
+  flex: 1;
+  max-width: 700px;
+}
+
+.neo-order-summary {
+  width: 320px;
+  position: sticky;
+  top: 20px;
+
+  @media (max-width: 900px) {
+    width: 100%;
+    max-width: 700px;
+    position: static;
+  }
+}
+
+.neo-cart-title, .neo-summary-title {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #21a0a0;
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+}
+
+.neo-divider {
+  border-top-color: #0a0f1a;
+  border-top-width: 2px;
+  margin: 16px 0;
+}
+
+.neo-cart-item {
+  padding: 16px 0;
+}
+
+.neo-item-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.neo-item-info {
+  flex: 1;
+  min-width: 150px;
+}
+
+.neo-item-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.neo-item-price {
+  font-size: 1rem;
+  color: #bfc9e0;
+  font-weight: 600;
+  background: #1a2238;
+  border-radius: 8px;
+  padding: 4px 8px;
+  display: inline-block;
+  border: 1.5px dashed #21a0a0;
+}
+
+.neo-quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.neo-quantity-input {
+  width: 60px;
+  margin: 0 4px;
+  
+  // Remove all extra spacing and subscript wrapper
+  .mat-mdc-form-field-subscript-wrapper {
+    display: none !important;
+    height: 0 !important;
+  }
+  
+  .mat-mdc-form-field-bottom-align::before {
+    display: none !important;
+  }
+  
+  .mat-mdc-text-field-wrapper {
+    padding-bottom: 0 !important;
+  }
+  
+  // Main input styling
+  .mat-mdc-form-field-flex {
+    background: #bfc9e0;
+    border-radius: 8px;
+    border: 2px solid #0a0f1a !important;
+    padding: 0 0.75em !important;
+    box-shadow: 2px 2px 0 #0a0f1a;
+    transition: all 0.12s;
+    min-height: 42px; // Match your button heights
+    align-items: center;
+  }
+  
+  .mat-mdc-form-field-infix {
+    padding: 0 !important;
+    border-top: 0 !important;
+    min-height: auto;
+  }
+  
+  .neo-input {
+    text-align: center;
+    font-weight: 700;
+    color: #0a0f1a !important;
+    font-size: 1rem;
+    padding: 8px 0 !important;
+    margin: 0 !important;
+    
+    &[disabled] {
+      color: #0a0f1a !important;
+      -webkit-text-fill-color: #0a0f1a !important;
+    }
+  }
+  
+  &:hover .mat-mdc-form-field-flex {
+    transform: translateY(-1px);
+    box-shadow: 1px 1px 0 #0a0f1a;
+    background: #d1d8e8;
+  }
+}
+
+
+.neo-btn {
+  font-weight: 800;
+  border-radius: 12px !important;
+  border: 3px solid #0a0f1a !important;
+  box-shadow: 4px 4px 0 #0a0f1a;
+  transition: transform 0.12s, box-shadow 0.12s, background 0.12s;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.neo-quantity-btn {
+  background: #21a0a0 !important;
+  color: #fff !important;
+  min-width: 36px !important;
+  padding: 0 !important;
+
+  &:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 2px 2px 0 #0a0f1a;
+    background: #278ea5 !important;
+  }
+}
+
+.neo-remove-btn {
+  background: #e74c3c !important;
+  color: #fff !important;
+  padding: 0 12px !important;
+
+  &:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 2px 2px 0 #0a0f1a;
+    background: #c0392b !important;
+  }
+}
+
+.neo-summary-text {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #bfc9e0;
+  margin: 12px 0;
+}
+
+.neo-checkout-btn {
+  background: #21a0a0 !important;
+  color: #fff !important;
+  padding: 8px 24px !important;
+  font-size: 1rem;
+  margin-top: 8px;
+
+  &:hover {
+    transform: translateY(-3px) scale(1.06) rotate(-2deg);
+    box-shadow: 2px 2px 0 #0a0f1a;
+    background: #278ea5 !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .neo-cart-container {
+    padding: 36px 10px 60px 10px;
+  }
+  
+  .neo-cart-details, .neo-order-summary {
+    padding: 18px 12px;
+  }
+  
+  .neo-cart-title, .neo-summary-title {
+    font-size: 1.5rem;
+  }
+  
+  .neo-item-details {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

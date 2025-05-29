@@ -1,0 +1,56 @@
+<div class="neo-cart-container">
+    <mat-card class="neo-cart-details">
+        <mat-card-header>
+            <mat-card-title class="neo-cart-title">Your Cart</mat-card-title>
+        </mat-card-header>
+        <mat-divider class="neo-divider"></mat-divider>
+        <mat-card-content>
+            <div *ngFor="let item of cartItems; let i = index" class="neo-cart-item">
+                <div class="neo-item-details">
+                    <div class="neo-item-info">
+                        <p class="neo-item-name">{{ item.name }}</p>
+                        <p class="neo-item-price">Price: {{ item.price | currency }}</p>
+                    </div>
+                    <div class="neo-quantity-control">
+                        <button mat-icon-button class="neo-btn neo-quantity-btn" (click)="decreaseQuantity(i)">
+                            <mat-icon>remove</mat-icon>
+                        </button>
+                        <mat-form-field appearance="fill" class="neo-quantity-input">
+                            <input matInput type="number" 
+                                [(ngModel)]="item.quantity" 
+                                min="1" 
+                                required 
+                                disabled
+                                class="neo-input" />
+                        </mat-form-field>
+                        <button mat-icon-button class="neo-btn neo-quantity-btn" (click)="increaseQuantity(i)">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                    <button mat-raised-button class="neo-btn neo-remove-btn" (click)="removeItem(i)">
+                        <mat-icon>delete</mat-icon>
+                        Remove
+                    </button>
+                </div>
+                <mat-divider class="neo-divider"></mat-divider>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card class="neo-order-summary">
+        <mat-card-header>
+            <mat-card-title class="neo-summary-title">Order Summary</mat-card-title>
+        </mat-card-header>
+        <mat-divider class="neo-divider"></mat-divider>
+        <mat-card-content>
+            <p class="neo-summary-text">Total Items: {{ getTotalItems() }}</p>
+            <p class="neo-summary-text">Total Price: {{ getTotalPrice() | currency }}</p>
+        </mat-card-content>
+        <mat-card-actions align="end">
+            <button mat-raised-button class="neo-btn neo-checkout-btn" (click)="checkout()">
+                <mat-icon>shopping_cart</mat-icon>
+                Checkout
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>
