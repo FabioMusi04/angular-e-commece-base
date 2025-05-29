@@ -42,7 +42,7 @@ AngularProject/
 
 - Node.js 18+
 
-- Yarn (o npm)
+- Npm
 
 - Angular CLI
 
@@ -52,19 +52,10 @@ AngularProject/
 
 ```bash
 # Installazione dipendenze
-yarn install
+npm install
 
 # Avvio sviluppo
-yarn start
-
-# Build produzione
-yarn build
-
-# Linting
-yarn lint
-
-# Test
-yarn test
+npm run start (ng serve)
 ```
 
 <br>
@@ -215,7 +206,7 @@ Usate nel modulo analytics per mostrare:
 Attualmente il progetto non è ancora deployato. Per prepararlo alla produzione:
 
 ```bash
-yarn build --configuration production
+ng build
 ```
 
 Il risultato si trova in `dist/e-commerce/` e può essere distribuito su:
