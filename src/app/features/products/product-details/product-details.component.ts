@@ -13,7 +13,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { ICategory, IProduct } from '../products.model';
 import { selectCategories } from '../../../state/categories/categories.selector';
-import { loadCategories, loadCategoriesWithoutPagination } from '../../../state/categories/categories.actions';
+import { loadCategoriesWithoutPagination } from '../../../state/categories/categories.actions';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatDialog } from '@angular/material/dialog';

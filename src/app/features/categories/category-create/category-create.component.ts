@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { Store } from '@ngrx/store';
@@ -9,6 +9,8 @@ import { selectCategories } from '../../../state/categories/categories.selector'
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
+import { AlertComponent } from '../../../shared/alert/alert.component';
 
 @Component({
   selector: 'app-category-create',
@@ -18,6 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './category-create.component.scss'
 })
 export class CategoryCreateComponent implements OnInit {
+  dialog = inject(MatDialog);
 
   categoryForm = this.fb.group({
     name: ['', Validators.required],
@@ -37,10 +40,14 @@ export class CategoryCreateComponent implements OnInit {
 
   onSubmit() {
     if (this.categoryForm.valid) {
-      if (this.categoryForm.valid) {
-        const category = this.categoryForm.value as ICategory;
-        this.store.dispatch(createCategory({ category }));
-      }
+      const category = this.categoryForm.value as ICategory;
+      this.store.dispatch(createCategory({ category }));
+
+      this.showAlert('Success', 'Category created successfully!', 'success');
+
+      setTimeout(() => {
+        this.goBack();
+      }, 1000);
     }
   }
 
@@ -48,4 +55,19 @@ export class CategoryCreateComponent implements OnInit {
     window.history.back();
   }
 
+  showAlert(
+    title: string,
+    message: string,
+    status: 'warn' | 'error' | 'info' | 'success'
+  ): void {
+    this.dialog.open(AlertComponent, {
+      data: {
+        title,
+        message,
+        status,
+        buttons: 'ok',
+        autoClose: true,
+      },
+    });
+  }
 }

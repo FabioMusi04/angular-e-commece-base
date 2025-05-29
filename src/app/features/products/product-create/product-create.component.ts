@@ -54,11 +54,12 @@ export class ProductCreateComponent implements OnInit {
       const product = this.productForm.value as IProduct;
 
       this.store.dispatch(createProduct({ product }));
-        this.productForm.reset();
-        this.showAlert('Success', 'Product created successfully!', 'success');
+      this.productForm.reset();
+
+      this.showAlert('Success', 'Product created successfully!', 'success');
+      setTimeout(() => {
         this.goBack();
-
-
+      }, 1000);
     }
   }
 
