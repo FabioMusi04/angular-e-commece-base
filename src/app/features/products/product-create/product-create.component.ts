@@ -3,7 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { Store } from '@ngrx/store';
-import { loadCategories, loadCategoriesWithoutPagination } from '../../../state/categories/categories.actions';
+import { loadCategoriesWithoutPagination } from '../../../state/categories/categories.actions';
 import { Observable } from 'rxjs';
 import { ICategory, IProduct } from '../products.model';
 import { selectCategories } from '../../../state/categories/categories.selector';

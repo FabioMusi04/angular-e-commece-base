@@ -3,16 +3,17 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { Store } from '@ngrx/store';
-import { loadCategories, loadCategoriesWithoutPagination } from '../../../state/categories/categories.actions';
 import { Observable } from 'rxjs';
-import { selectCategories } from '../../../state/categories/categories.selector';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { createOrder } from '../../../state/orders/orders.actions';
-import { IOrder, ICategory } from '../orders.model';
+import { IOrder } from '../orders.model';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { IUser } from '../../../interfaces';
+import { selectUsers } from '../../../state/users/users.selectors';
+import { loadUsers } from '../../../state/users/users.actions';
 
 @Component({
   selector: 'app-order-create',
@@ -31,15 +32,15 @@ export class OrderCreateComponent implements OnInit {
     orderItems: [[], Validators.required],
   })
 
-  categories$: Observable<ICategory[]>;
+  users$: Observable<IUser[]>;
 
   constructor(private fb: FormBuilder, private store: Store) {
-    this.categories$ = this.store.select(selectCategories);
+    this.users$ = this.store.select(selectUsers);
   }
 
   ngOnInit() {
-    this.categories$.subscribe();
-    this.store.dispatch(loadCategoriesWithoutPagination());
+    this.users$.subscribe();
+    this.store.dispatch(loadUsers());
   }
 
   onSubmit() {
