@@ -3,7 +3,6 @@ import { IUser } from "../../interfaces";
 
 export const loadUsers = createAction(
   '[Users] Load Users',
-  props<{ page: number; limit: number }>(),
 )
 
 export const loadUsersSuccess = createAction(

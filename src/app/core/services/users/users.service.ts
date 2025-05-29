@@ -9,8 +9,8 @@ import { IUser } from "../../../interfaces";
 export class UsersService {
   constructor(private http: HttpClient) {}
 
-  getUsers(page: number, limit: number): Observable<IUser[]> {
-    return this.http.get<IUser[]>(`/users?count=true&page=${page}&limit=${limit}`);
+  getUsers(): Observable<IUser[]> {
+    return this.http.get<IUser[]>(`/users`);
   }
 
   getUserById(id: string): Observable<Omit<IUser, 'password'>> {

@@ -10,8 +10,8 @@ export class UsersEffects {
   loadUsers$ = createEffect(() =>
     this.actions$.pipe(
       ofType(UsersActions.loadUsers),
-      mergeMap(action =>
-        this.usersService.getUsers(action.page, action.limit).pipe(
+      mergeMap(() =>
+        this.usersService.getUsers().pipe(
           map(users => UsersActions.loadUsersSuccess({ users })),
           catchError(error => of(UsersActions.loadUsersFailure({ error })))
         )
