@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { CommonModule } from '@angular/common';
 
 interface ICategory {
   id: string;
@@ -22,6 +23,7 @@ interface ICategory {
   selector: 'app-products-list',
   standalone: true,
   imports: [
+    CommonModule,
     MatTableModule,
     MatPaginatorModule,
     MatButton,
@@ -104,6 +106,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit, OnDestroy {
         map.set(p.category.id, p.category.name);
       }
     });
+
     this.categories = Array.from(map.entries()).map(([id, name]) => ({ id, name }));
   }
 }
